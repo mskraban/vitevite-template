@@ -4,11 +4,6 @@ import '../scss/main.scss'
 import App from './components/App.vue'
 import { defineCustomElement } from 'vue'
 
-// Vue utility components
-import percentageCalculator01 from "./components/calculator/PercentageCalculator01.vue";
-import percentageCalculator02 from "./components/calculator/PercentageCalculator02.vue";
-import celsiusToFahrenheit from "./components/temperature/CelsiusToFahrenheit.vue";
-
 // Vue pages
 import Home from './views/HomePage.vue'
 import PercentCalcPage from './views/PercentCalcPage.vue'
@@ -25,7 +20,7 @@ customElements.define('about-example', AboutExample)
 const routes = [
     {path: '/', name: 'Home', component: Home},
     {path: '/percentage-calculator', name: 'Percentage calculator', component: PercentCalcPage},
-    {path: '/temperature-converter', name: 'TempConvert', component: TempConvert},
+    {path: '/temperature-converter', name: 'Temperature converter', component: TempConvert},
 ]
 
 const router = createRouter({
@@ -41,9 +36,6 @@ router.beforeEach((to, from, next) => {
 
 createApp(App)
     .use(router)
-    .component('PercentageCalculator01', percentageCalculator01)
-    .component('PercentageCalculator02', percentageCalculator02)
-    .component('CelsiusToFahrenheit', celsiusToFahrenheit)
     .mount('#app')
 
 

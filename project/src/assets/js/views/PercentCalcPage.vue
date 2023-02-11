@@ -6,3 +6,8 @@
         <PercentageCalculator02/>
     </div>
 </template>
+
+<script setup>
+import PercentageCalculator01 from '../components/calculator/PercentageCalculator01.vue';
+import PercentageCalculator02 from '../components/calculator/PercentageCalculator02.vue';
+</script>

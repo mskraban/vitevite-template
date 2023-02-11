@@ -6,7 +6,6 @@
                 <router-link to="/">Home</router-link>
                 <router-link to="/percentage-calculator">Percentage calculator</router-link>
                 <router-link to="/temperature-converter">Temperature converter</router-link>
-                <router-link to="/brazil">Brazil</router-link>
             </div>
         </nav>
 
