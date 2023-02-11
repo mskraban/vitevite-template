@@ -11,8 +11,10 @@
     "format": "prettier .  --write"
   },
   "dependencies": {
+    "gsap": "^3.11.4",
     "vue": "^3.2.45",
     "vue-custom-element": "^3.3.0",
+    "vue-meta": "^2.4.0",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
