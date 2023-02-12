@@ -32,9 +32,14 @@ export default {
     methods: {
         toggleExpand() {
             this.expanded = this.expanded === false;
+            this.scrollToTop();
         },
         closeExpand() {
             this.expanded = false;
+            this.scrollToTop();
+        },
+        scrollToTop() {
+            window.scrollTo(0,0);
         }
     },
 };
