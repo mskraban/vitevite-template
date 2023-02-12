@@ -21,9 +21,21 @@ const AboutExample = defineCustomElement(About)
 customElements.define('about-example', AboutExample)
 
 const routes = [
-    {path: '/', name: 'Home', component: Home},
-    {path: '/percentage-calculator', name: 'Percentage calculator', component: PercentCalcPage},
-    {path: '/temperature-converter', name: 'Temperature converter', component: TempConvert},
+    {
+        path: '/',
+        name: 'Home',
+        component: Home
+    },
+    {
+        path: '/percentage-calculator',
+        name: 'Percentage calculator',
+        component: PercentCalcPage
+    },
+    {
+        path: '/temperature-converter',
+        name: 'Temperature converter',
+        component: TempConvert
+    },
 ]
 
 const router = createRouter({
