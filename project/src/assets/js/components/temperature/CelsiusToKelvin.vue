@@ -1,7 +1,7 @@
 <template>
-    <div class="percent-calc calc-01">
-        <div class="calc-01">
-            <div class="title">Fahrenheit to Celsius</div>
+    <div class="percent-calc">
+        <div class="calc-03">
+            <div class="title">Celsius to Kelvin</div>
             <div class="calc">
                 <span class="copy">What is</span>
                 <input
@@ -10,10 +10,10 @@
                     class="number-01"
                     @input="convertTemperature"
                 >
-                <span class="copy">°F in Celsius?</span>
+                <span class="copy">°C in Kelvin?</span>
 
                 <span class="result">
-                    {{ animatedResult }} °C
+                    {{ animatedResult }} K
                 </span>
             </div>
         </div>
@@ -24,11 +24,11 @@
 import gsap from "gsap";
 
 export default {
-    name: 'FahrenheitToCelsius',
+    name: 'CelsiusToKelvin',
     data() {
         return {
             number01: null,
-            number02: null,
+            constant: 273.15,
             result: 0,
             tweenedNumber: 0,
         };
@@ -45,7 +45,7 @@ export default {
     },
     methods: {
         convertTemperature() {
-            this.result = (this.number01 - 32) * (5/9);
+            this.result = this.number01 + this.constant;
         },
     },
 };
