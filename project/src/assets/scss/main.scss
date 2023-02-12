@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
+@import "./bootstrap/scss/bootstrap-grid.scss";
+@import "src/assets/scss/menu/navigation";
 
 *,
 *:before,
@@ -33,70 +35,21 @@ body {
 .page {
   display: flex;
 
-  nav {
-    background: #181818;
-    display: flex;
-    height: 100vh;
-    width: 170px;
-    align-items: flex-start;
-    flex-direction: column;
-    border-right: 1px solid #8c8c8c;
-
-    .logo {
-      font-family: "Unbounded", cursive;
-      color: white;
-      font-size: 1rem;
-      font-weight: 400;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-      position: relative;
-
-      &:after {
-        content: "";
-        background: white;
-        height: 1px;
-        width: 40px;
-        position: absolute;
-        bottom: 8px;
-      }
-    }
-
-    .nav-container {
-      margin: 0 auto;
-      display: flex;
-      gap: 20px;
-      width: 100%;
-      padding-top: 6rem;
-      padding-left: 24px;
-      padding-right: 24px;
-      flex-direction: column;
-
-      a {
-        color: rgba(255, 255, 255, 0.8);
-        text-decoration: none;
-        font-family: 'Unbounded', cursive;
-        transition: all ease-in-out 0.2s;
-        font-size: 12px;
-        line-height: 150%;
-
-        &:hover {
-          color: rgba(255, 255, 255, 1);
-        }
-      }
-
-      .router-link-active {
-        color: rgba(255, 255, 255, 1);
-      }
-    }
+  @include media-breakpoint-down(md) {
+    display: initial;
   }
 
   .container {
     overflow: hidden;
     padding: 50px 24px;
     margin-left: 2rem;
+
+    @include media-breakpoint-down(md) {
+      width: 100%;
+      padding-left: 24px;
+      padding-right: 24px;
+      margin: 56px auto 0;
+    }
   }
 
   h1 {
@@ -104,6 +57,10 @@ body {
     color: #0a0a0a;
     margin-top: 0;
     margin-bottom: 1rem;
+
+    @include media-breakpoint-down(md) {
+      font-size: 28px;
+    }
   }
 
   p {
@@ -127,6 +84,11 @@ body {
     width: 510px;
     transition: all 0.2s ease-in-out;
     position: relative;
+
+    @include media-breakpoint-down(md) {
+      width: 100%;
+      padding: 1.25rem;
+    }
 
     &:after {
       content: "";
@@ -170,6 +132,10 @@ body {
       font-size: 18px;
       color: #0a0a0a;
       margin-bottom: 0.875rem;
+
+      @include media-breakpoint-down(md) {
+        font-size: 14px;
+      }
     }
 
     .calc {
@@ -178,11 +144,20 @@ body {
       justify-content: center;
       align-items: center;
 
+      @include media-breakpoint-down(md) {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+
       .copy {
         color: #0a0a0a;
         font-family: 'Barlow', sans-serif;
         font-size: 16px;
         white-space: nowrap;
+
+        @include media-breakpoint-down(md) {
+          font-size: 14px;
+        }
       }
 
       .result {
@@ -191,6 +166,11 @@ body {
         font-size: 16px;
         transition: width ease-in-out 1s;
         white-space: nowrap;
+
+        @include media-breakpoint-down(md) {
+          display: block;
+          width: 100%;
+        }
       }
 
       input {
@@ -205,8 +185,12 @@ body {
         font-size: 16px;
         text-align: center;
 
+        @include media-breakpoint-down(md) {
+          width: 70px;
+        }
+
         &:focus {
-          outline:none;
+          outline: none;
           border: 1px solid rgb(0, 0, 0);
         }
       }

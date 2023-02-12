@@ -1,13 +1,6 @@
 <template>
     <div class="page">
-        <nav>
-            <div class="logo">Utility tools</div>
-            <div class="nav-container">
-                <router-link to="/">Home</router-link>
-                <router-link to="/percentage-calculator">Percentage calculator</router-link>
-                <router-link to="/temperature-converter">Temperature converter</router-link>
-            </div>
-        </nav>
+        <vue-navigation/>
 
         <div class="container">
             <transition
@@ -19,6 +12,3 @@
         </div>
     </div>
 </template>
-
-<script>
-</script>

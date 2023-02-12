@@ -4,6 +4,9 @@ import '../scss/main.scss'
 import App from './components/App.vue'
 import { defineCustomElement } from 'vue'
 
+// Vue utility Components
+import Navigation from './components/navigation/Navigation.vue'
+
 // Vue pages
 import Home from './views/HomePage.vue'
 import PercentCalcPage from './views/PercentCalcPage.vue'
@@ -36,6 +39,7 @@ router.beforeEach((to, from, next) => {
 
 createApp(App)
     .use(router)
+    .component('VueNavigation', Navigation)
     .mount('#app')
 
 
