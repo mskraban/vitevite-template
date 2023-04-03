@@ -7,5 +7,14 @@
                 <a href="#" class="btn btn-red">See more</a>
             </div>
         </section>
+        <vue-standings/>
     </div>
 </template>
+
+<script>
+import VueStandings from "../components/sections/Standings.vue";
+export default {
+    components: {VueStandings}
+}
+
+</script>

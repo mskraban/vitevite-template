@@ -7,10 +7,11 @@ import { defineCustomElement } from 'vue'
 // Vue utility Components
 import Navigation from './components/navigation/Navigation.vue'
 
+// Vue section Components
+import Standings from './components/sections/Standings.vue'
+
 // Vue pages
 import Home from './views/HomePage.vue'
-import PercentCalcPage from './views/PercentCalcPage.vue'
-import TempConvert from './views/TemperatureConverterPage.vue'
 import About from './views/AboutPage.vue'
 
 
@@ -25,16 +26,6 @@ const routes = [
         path: '/',
         name: 'Next F1 Race',
         component: Home
-    },
-    {
-        path: '/percentage-calculator',
-        name: 'Percentage calculator',
-        component: PercentCalcPage
-    },
-    {
-        path: '/temperature-converter',
-        name: 'Temperature converter',
-        component: TempConvert
     },
 ]
 
@@ -52,6 +43,7 @@ router.beforeEach((to, from, next) => {
 createApp(App)
     .use(router)
     .component('VueNavigation', Navigation)
+    .component('VueStandings', Standings)
     .mount('#app')
 
 

@@ -11,6 +11,18 @@
 }
 
 @font-face {
+  font-family: 'ExoMedium';
+  src: url('src/assets/fonts/Exo-Medium.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ExoBold';
+  src: url('src/assets/fonts/Exo-Bold.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Bruno';
   src: url('src/assets/fonts/Bruno.ttf') format('truetype');
   font-display: swap;
