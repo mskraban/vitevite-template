@@ -23,7 +23,7 @@ customElements.define('about-example', AboutExample)
 const routes = [
     {
         path: '/',
-        name: 'Home',
+        name: 'Next F1 Race',
         component: Home
     },
     {
