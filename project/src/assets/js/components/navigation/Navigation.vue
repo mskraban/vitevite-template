@@ -8,7 +8,10 @@
                     :src="images[1]"
                     alt="Next F1 Race" />
             </div>
-            <div class="nav-links">
+            <div
+                :class="expanded ? 'nav-expanded' : ''"
+                class="nav-links"
+            >
                 <router-link to="/" @click="closeExpand">Home</router-link>
                 <router-link to="/standings" @click="closeExpand">Standings</router-link>
                 <router-link to="/tracks" @click="closeExpand">Tracks</router-link>
