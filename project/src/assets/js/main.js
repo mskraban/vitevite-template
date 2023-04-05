@@ -9,6 +9,7 @@ import Navigation from './components/navigation/Navigation.vue'
 
 // Vue section Components
 import Standings from './components/sections/Standings.vue'
+import Calendar from './components/sections/Calendar.vue'
 
 // Vue pages
 import Home from './views/HomePage.vue'
@@ -44,6 +45,7 @@ createApp(App)
     .use(router)
     .component('VueNavigation', Navigation)
     .component('VueStandings', Standings)
+    .component('VueCalendar', Calendar)
     .mount('#app')
 
 

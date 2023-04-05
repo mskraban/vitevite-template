@@ -8,13 +8,15 @@
             </div>
         </section>
         <vue-standings/>
+        <vue-calendar/>
     </div>
 </template>
 
 <script>
 import VueStandings from "../components/sections/Standings.vue";
+import VueCalendar from "../components/sections/Calendar.vue";
 export default {
-    components: {VueStandings}
+    components: {VueStandings, VueCalendar}
 }
 
 </script>

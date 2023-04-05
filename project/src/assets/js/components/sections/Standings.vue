@@ -3,7 +3,8 @@
         <div class="row">
             <div class="content">
                 <h2>Standings</h2>
-                <p>Top 3 drivers standings</p>
+                <p>The F1 top 3 driver standings rank the most successful drivers in the Formula One World Championship
+                    based on points earned in each race.</p>
             </div>
         </div>
         <div class="row">
@@ -144,7 +145,7 @@
 import driver01 from '../../../images/lewis.png'
 import driver02 from '../../../images/charles.png'
 import driver03 from '../../../images/max.png'
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import {Swiper, SwiperSlide} from 'swiper/vue';
 import 'swiper/css';
 
 export default {
@@ -159,18 +160,5 @@ export default {
             expanded: false,
         };
     },
-    methods: {
-        toggleExpand() {
-            this.expanded = this.expanded === false;
-            this.scrollToTop();
-        },
-        closeExpand() {
-            this.expanded = false;
-            this.scrollToTop();
-        },
-        scrollToTop() {
-            window.scrollTo(0, 0);
-        }
-    }
 };
 </script>
