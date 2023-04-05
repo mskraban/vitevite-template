@@ -161,10 +161,15 @@ body {
       background: #1C1D23;
       padding-top: 68px;
       padding-bottom: 92px;
+      overflow: hidden;
 
       .row {
         .content {
           margin: 0 auto 80px;
+
+          @include media-breakpoint-down(md) {
+            margin: 0 auto 60px;
+          }
 
           h2 {
             font-family: 'Bruno', sans-serif;
@@ -192,7 +197,33 @@ body {
           display: flex;
           justify-content: center;
           gap: 24px;
-          margin-bottom: 68px;
+          max-width: 778px;
+          margin: 0 auto;
+          flex-direction: column;
+
+          .swiper {
+            padding: 1.5rem;
+            margin: -1.5rem;
+            box-sizing: content-box;
+            max-width: 778px;
+
+            @include media-breakpoint-down(md) {
+              padding-left: 2rem;
+              padding-right: 2rem;
+              margin-left: 0;
+              margin-right: 0;
+            }
+
+            .swiper-slide {
+              @include media-breakpoint-down(md) {
+                max-width: 243px;
+              }
+            }
+          }
+
+          .btn {
+            margin-top: calc(60px - 1.5rem);
+          }
 
           .standings-card {
             width: 243px;

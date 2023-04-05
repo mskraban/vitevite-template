@@ -8,46 +8,134 @@
         </div>
         <div class="row">
             <div class="standings">
-                <div class="standings-card">
-                    <div class="driver-img mercedes">
-                        <img :src="drivers[0]" alt="Lewis Hamilton">
-                    </div>
-                    <div class="driver-name">
-                        Lewis Hamilton
-                    </div>
-                    <div class="driver-pts">
-                        <span class="pts-count">8</span>
-                        <span class="pts-copy">pts</span>
-                    </div>
-                </div>
+                <swiper
+                    slides-per-view="auto"
+                    :centered-slides="true"
+                    :space-between="24"
+                    :breakpoints="{
+                        768: {
+                            slidesPerView: 3,
+                            centeredSlides: false,
+                        },
+                    }"
+                >
+                    <swiper-slide>
+                        <div class="standings-card">
+                            <div class="driver-img mercedes">
+                                <img :src="drivers[0]" alt="Lewis Hamilton">
+                            </div>
+                            <div class="driver-name">
+                                Lewis Hamilton
+                            </div>
+                            <div class="driver-pts">
+                                <span class="pts-count">8</span>
+                                <span class="pts-copy">pts</span>
+                            </div>
+                        </div>
+                    </swiper-slide>
 
-                <div class="standings-card">
-                    <div class="driver-img ferrari">
-                        <img :src="drivers[1]" alt="Charles Leclerc">
-                    </div>
-                    <div class="driver-name">
-                        Charles Leclerc
-                    </div>
-                    <div class="driver-pts">
-                        <span class="pts-count">6</span>
-                        <span class="pts-copy">pts</span>
-                    </div>
-                </div>
+                    <swiper-slide>
+                        <div class="standings-card">
+                            <div class="driver-img ferrari">
+                                <img :src="drivers[1]" alt="Charles Leclerc">
+                            </div>
+                            <div class="driver-name">
+                                Charles Leclerc
+                            </div>
+                            <div class="driver-pts">
+                                <span class="pts-count">6</span>
+                                <span class="pts-copy">pts</span>
+                            </div>
+                        </div>
+                    </swiper-slide>
 
-                <div class="standings-card">
-                    <div class="driver-img redbull">
-                        <img :src="drivers[2]" alt="Max Verstappen">
-                    </div>
-                    <div class="driver-name">
-                        Max Verstappen
-                    </div>
-                    <div class="driver-pts">
-                        <span class="pts-count">4</span>
-                        <span class="pts-copy">pts</span>
-                    </div>
-                </div>
+                    <swiper-slide>
+                        <div class="standings-card">
+                            <div class="driver-img redbull">
+                                <img :src="drivers[2]" alt="Max Verstappen">
+                            </div>
+                            <div class="driver-name">
+                                Max Verstappen
+                            </div>
+                            <div class="driver-pts">
+                                <span class="pts-count">4</span>
+                                <span class="pts-copy">pts</span>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="standings-card">
+                            <div class="driver-img redbull">
+                                <img :src="drivers[2]" alt="Max Verstappen">
+                            </div>
+                            <div class="driver-name">
+                                Max Verstappen
+                            </div>
+                            <div class="driver-pts">
+                                <span class="pts-count">4</span>
+                                <span class="pts-copy">pts</span>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="standings-card">
+                            <div class="driver-img redbull">
+                                <img :src="drivers[2]" alt="Max Verstappen">
+                            </div>
+                            <div class="driver-name">
+                                Max Verstappen
+                            </div>
+                            <div class="driver-pts">
+                                <span class="pts-count">4</span>
+                                <span class="pts-copy">pts</span>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="standings-card">
+                            <div class="driver-img redbull">
+                                <img :src="drivers[2]" alt="Max Verstappen">
+                            </div>
+                            <div class="driver-name">
+                                Max Verstappen
+                            </div>
+                            <div class="driver-pts">
+                                <span class="pts-count">4</span>
+                                <span class="pts-copy">pts</span>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="standings-card">
+                            <div class="driver-img redbull">
+                                <img :src="drivers[2]" alt="Max Verstappen">
+                            </div>
+                            <div class="driver-name">
+                                Max Verstappen
+                            </div>
+                            <div class="driver-pts">
+                                <span class="pts-count">4</span>
+                                <span class="pts-copy">pts</span>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                    <swiper-slide>
+                        <div class="standings-card">
+                            <div class="driver-img redbull">
+                                <img :src="drivers[2]" alt="Max Verstappen">
+                            </div>
+                            <div class="driver-name">
+                                Max Verstappen
+                            </div>
+                            <div class="driver-pts">
+                                <span class="pts-count">4</span>
+                                <span class="pts-copy">pts</span>
+                            </div>
+                        </div>
+                    </swiper-slide>
+                </swiper>
+                <a href="#" class="btn btn-white">Full standings</a>
             </div>
-            <a href="#" class="btn btn-white">Full standings</a>
         </div>
     </div>
 </template>
@@ -56,9 +144,15 @@
 import driver01 from '../../../images/lewis.png'
 import driver02 from '../../../images/charles.png'
 import driver03 from '../../../images/max.png'
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
 
 export default {
     name: 'VueStandings',
+    components: {
+        Swiper,
+        SwiperSlide,
+    },
     data() {
         return {
             drivers: [driver01, driver02, driver03],
@@ -77,6 +171,6 @@ export default {
         scrollToTop() {
             window.scrollTo(0, 0);
         }
-    },
+    }
 };
 </script>
