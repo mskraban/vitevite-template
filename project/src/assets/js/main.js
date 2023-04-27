@@ -28,6 +28,11 @@ const routes = [
         name: 'Next F1 Race',
         component: Home
     },
+    {
+        path: '/standings',
+        name: 'Standings',
+        component: Standings
+    },
 ]
 
 const router = createRouter({

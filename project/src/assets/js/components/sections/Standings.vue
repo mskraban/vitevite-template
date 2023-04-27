@@ -146,6 +146,8 @@ import driver01 from '../../../images/lewis.png'
 import driver02 from '../../../images/charles.png'
 import driver03 from '../../../images/max.png'
 import {Swiper, SwiperSlide} from 'swiper/vue';
+import axios from 'axios';
+import parser from 'xml2json-light'
 import 'swiper/css';
 
 export default {
@@ -154,11 +156,42 @@ export default {
         Swiper,
         SwiperSlide,
     },
+    props: {
+        embedView: {
+            type: Boolean,
+            default: false,
+        }
+    },
     data() {
         return {
-            drivers: [driver01, driver02, driver03],
+            drivers: [
+                driver01, 
+                driver02, 
+                driver03,
+            ],
             expanded: false,
+            driversData: null,
         };
     },
+    mounted() {
+        this.getDriverStandings();
+    },
+    methods: {
+        getDriverStandings() {
+            axios.get('http://ergast.com/api/f1/current/driverStandings')
+                .then(response => {
+                    // handle success
+                    console.log(response.data);
+                    this.driversData = this.parseXml(response.data);
+                })
+                .catch(error => {
+                    // handle error
+                    console.log(error);
+                });
+        },
+        parseXml(xmlData) {
+            return parser.xml2json(xmlData);
+        }
+    }
 };
 </script>
