@@ -178,16 +178,30 @@ export default {
     },
     methods: {
         getDriverStandings() {
-            axios.get('http://ergast.com/api/f1/current/driverStandings')
-                .then(response => {
-                    // handle success
-                    console.log(response.data);
-                    this.driversData = this.parseXml(response.data);
-                })
-                .catch(error => {
-                    // handle error
-                    console.log(error);
-                });
+            const currentVersion = 2
+            let data = localStorage.getItem('driverStandings')
+            const version = localStorage.getItem('driverStandingsVersion')
+
+            // trigger endpoint after first page load, set version
+            // save date instead of version
+            // refresh content every day - if there is 1 day diff
+          
+            this.driversData = this.parseXml(data);
+
+            if (!version || version < currentVersion) {
+                axios.get('http://ergast.com/api/f1/current/driverStandings')
+                    .then(response => {
+                        // handle success
+                        console.log(response.data);
+                        data = response.data;
+                        localStorage.setItem('driverStandings', data)
+                        localStorage.setItem('driverStandingsVersion', currentVersion)
+                    })
+                    .catch(error => {
+                        // handle error
+                        console.log(error);
+                    });
+            }
         },
         parseXml(xmlData) {
             return parser.xml2json(xmlData);
