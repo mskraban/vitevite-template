@@ -57,7 +57,9 @@
                     >
                         <img
                             :src="getDriverImage(item.Driver.driverId)"
-                            :alt="item.Driver.GivenName + ' ' + item.Driver.FamilyName">
+                            :alt="item.Driver.GivenName + ' ' + item.Driver.FamilyName"
+                            loading="lazy"
+                        >
                     </div>
                     <div class="driver-name">
                         {{ item.Driver.GivenName }}
