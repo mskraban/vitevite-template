@@ -157,166 +157,6 @@ body {
       }
     }
 
-    #standings {
-      background: #1C1D23;
-      padding-top: 68px;
-      padding-bottom: 92px;
-      overflow: hidden;
-
-      .row {
-        .content {
-          margin: 0 auto 80px;
-          max-width: 600px;
-
-          @include media-breakpoint-down(md) {
-            margin: 0 auto 60px;
-          }
-
-          h2 {
-            font-family: 'Bruno', sans-serif;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 48px;
-            line-height: 58px;
-            color: #F3F3F3;
-            margin-bottom: 8px;
-            text-align: center;
-          }
-
-          p {
-            font-family: 'Exo', sans-serif;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 20px;
-            line-height: 27px;
-            color: #F3F3F3;
-            margin-bottom: 0;
-            text-align: center;
-          }
-        }
-
-        .standings {
-          display: flex;
-          justify-content: center;
-          gap: 24px;
-          max-width: 778px;
-          margin: 0 auto;
-          flex-direction: column;
-
-          .swiper {
-            padding: 1.5rem;
-            margin: -1.5rem;
-            box-sizing: content-box;
-            max-width: 778px;
-
-            @include media-breakpoint-down(md) {
-              padding-left: 2rem;
-              padding-right: 2rem;
-              margin-left: 0;
-              margin-right: 0;
-            }
-
-            .swiper-slide {
-              @include media-breakpoint-down(md) {
-                max-width: 243px;
-              }
-            }
-          }
-
-          .btn {
-            margin-top: calc(60px - 1.5rem);
-          }
-
-          .standings-card {
-            width: 243px;
-            transition: transform 0.3s ease;
-
-            &:hover {
-              transform: scale(1.1);
-
-              .driver-img {
-                img {
-                  filter: brightness(1.25);
-                }
-              }
-            }
-
-            .driver-img {
-              border-radius: 5px;
-              height: 206px;
-              margin-bottom: 12px;
-              display: flex;
-              justify-content: center;
-              align-content: flex-end;
-
-              img {
-                transition: filter 0.3s ease-in-out;
-              }
-
-              &.mercedes {
-                background: #02D2BE;
-              }
-
-              &.ferrari {
-                background: #FE0000;
-              }
-
-              &.redbull {
-                background: #171961;
-              }
-            }
-
-            .driver-name {
-              background: #F3F3F3;
-              border-radius: 5px;
-              width: 243px;
-              height: 44px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              text-align: center;
-              font-family: 'ExoBold', sans-serif;
-              font-style: normal;
-              font-weight: 700;
-              font-size: 20px;
-              line-height: 27px;
-              color: #1C1D23;
-              margin-bottom: 10px;
-            }
-
-            .driver-pts {
-              font-family: 'Bruno', sans-serif;
-              font-style: normal;
-              font-weight: 400;
-              font-size: 24px;
-              line-height: 29px;
-              color: #FFFFFF;
-              display: flex;
-              justify-content: center;
-              align-content: center;
-              text-align: center;
-              width: 125px;
-              height: 46px;
-              margin: 0 auto;
-              align-items: baseline;
-              gap: 8px;
-              padding-top: 2px;
-
-              border-width: 0px 2px 2px 2px;
-              border-style: solid;
-              border-color: #FFFFFF;
-              border-radius: 5px;
-            }
-          }
-        }
-
-        .btn-white {
-          background: #F3F3F3;
-          color: #1C1D23;
-        }
-      }
-    }
-
     #calendar {
       background: #F3F3F3;
       padding-top: 80px;
@@ -463,6 +303,395 @@ body {
         background: #1C1D23;
         color: #F3F3F3;
         margin-top: calc(40px - 18px);
+      }
+    }
+  }
+
+  #standings {
+    &.embed {
+      background: #1C1D23;
+      padding-top: 68px;
+      padding-bottom: 92px;
+      overflow: hidden;
+
+      .row {
+        .content {
+          margin: 0 auto 80px;
+          max-width: 600px;
+
+          @include media-breakpoint-down(md) {
+            margin: 0 auto 60px;
+          }
+
+          h2 {
+            font-family: 'Bruno', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 48px;
+            line-height: 58px;
+            color: #F3F3F3;
+            margin-bottom: 8px;
+            text-align: center;
+          }
+
+          p {
+            font-family: 'Exo', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 27px;
+            color: #F3F3F3;
+            margin-bottom: 0;
+            text-align: center;
+          }
+        }
+
+        .standings {
+          display: flex;
+          justify-content: center;
+          gap: 24px;
+          max-width: 778px;
+          margin: 0 auto;
+          flex-direction: column;
+
+          .swiper {
+            padding: 1.5rem;
+            margin: -1.5rem;
+            box-sizing: content-box;
+            max-width: 778px;
+
+            @include media-breakpoint-down(md) {
+              padding-left: 2rem;
+              padding-right: 2rem;
+              margin-left: 0;
+              margin-right: 0;
+            }
+
+            .swiper-slide {
+              @include media-breakpoint-down(md) {
+                max-width: 243px;
+              }
+            }
+          }
+
+          .btn {
+            margin-top: calc(60px - 1.5rem);
+          }
+
+          .standings-card {
+            width: 243px;
+            transition: transform 0.3s ease;
+
+            &:hover {
+              transform: scale(1.1);
+
+              .driver-img {
+                img {
+                  filter: brightness(1.25);
+                }
+              }
+            }
+
+            .driver-img {
+              border-radius: 5px;
+              height: 206px;
+              margin-bottom: 12px;
+              display: flex;
+              justify-content: center;
+              align-content: flex-end;
+
+              img {
+                transition: filter 0.3s ease-in-out;
+              }
+
+              &.mercedes {
+                background: #02D2BE;
+              }
+
+              &.ferrari {
+                background: #FE0000;
+              }
+
+              &.red_bull {
+                background: #171961;
+              }
+
+              &.aston_martin {
+                background: #035850;
+              }
+
+              &.mclaren {
+                background: #FF8801;
+              }
+
+              &.haas {
+                background: #171961;
+              }
+
+              &.alfa {
+                background: #9B0000;
+              }
+
+              &.alpine {
+                background: #0E1C2C;
+              }
+
+              &.alphatauri {
+                background: #262851;
+              }
+
+              &.williams {
+                background: #02A9EC;
+              }
+
+            }
+
+            .driver-name {
+              background: #F3F3F3;
+              border-radius: 5px;
+              width: 243px;
+              height: 44px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              font-family: 'ExoBold', sans-serif;
+              font-style: normal;
+              font-weight: 700;
+              font-size: 20px;
+              line-height: 27px;
+              color: #1C1D23;
+              margin-bottom: 10px;
+            }
+
+            .driver-pts {
+              font-family: 'Bruno', sans-serif;
+              font-style: normal;
+              font-weight: 400;
+              font-size: 24px;
+              line-height: 29px;
+              color: #FFFFFF;
+              display: flex;
+              justify-content: center;
+              align-content: center;
+              text-align: center;
+              width: 125px;
+              height: 46px;
+              margin: 0 auto;
+              align-items: baseline;
+              gap: 8px;
+              padding-top: 2px;
+
+              border-width: 0px 2px 2px 2px;
+              border-style: solid;
+              border-color: #FFFFFF;
+              border-radius: 5px;
+            }
+          }
+        }
+
+        .btn-white {
+          background: #F3F3F3;
+          color: #1C1D23;
+        }
+      }
+    }
+
+    &.page-view {
+      background: #1C1D23;
+      padding-top: 68px;
+      padding-bottom: 92px;
+      overflow: hidden;
+
+      .row {
+        .content {
+          margin: 0 auto 80px;
+          max-width: 600px;
+
+          @include media-breakpoint-down(md) {
+            margin: 0 auto 60px;
+          }
+
+          h2 {
+            font-family: 'Bruno', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 48px;
+            line-height: 58px;
+            color: #F3F3F3;
+            margin-bottom: 8px;
+            text-align: center;
+          }
+
+          p {
+            font-family: 'Exo', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 27px;
+            color: #F3F3F3;
+            margin-bottom: 0;
+            text-align: center;
+          }
+        }
+
+        .standings {
+          &.flex-layout {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            max-width: 778px;
+            margin: 0 auto;
+            flex-direction: column;
+          }
+
+          &.grid-layout {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1090px;
+            margin: 0 auto;
+          }
+
+          .swiper {
+            padding: 1.5rem;
+            margin: -1.5rem;
+            box-sizing: content-box;
+            max-width: 778px;
+
+            @include media-breakpoint-down(md) {
+              padding-left: 2rem;
+              padding-right: 2rem;
+              margin-left: 0;
+              margin-right: 0;
+            }
+
+            .swiper-slide {
+              @include media-breakpoint-down(md) {
+                max-width: 243px;
+              }
+            }
+          }
+
+          .btn {
+            margin-top: calc(60px - 1.5rem);
+          }
+
+          .standings-card {
+            width: 243px;
+            transition: transform 0.3s ease;
+
+            &:hover {
+              transform: scale(1.1);
+
+              .driver-img {
+                img {
+                  filter: brightness(1.25);
+                }
+              }
+            }
+
+            .driver-img {
+              border-radius: 5px;
+              height: 206px;
+              margin-bottom: 12px;
+              display: flex;
+              justify-content: center;
+              align-content: flex-end;
+
+              img {
+                transition: filter 0.3s ease-in-out;
+              }
+
+              &.mercedes {
+                background: #02D2BE;
+              }
+
+              &.ferrari {
+                background: #FE0000;
+              }
+
+              &.red_bull {
+                background: #171961;
+              }
+
+              &.aston_martin {
+                background: #035850;
+              }
+
+              &.mclaren {
+                background: #FF8801;
+              }
+
+              &.haas {
+                background: #b2afb2;
+              }
+
+              &.alfa {
+                background: #9B0000;
+              }
+
+              &.alpine {
+                background: #0E1C2C;
+              }
+
+              &.alphatauri {
+                background: #262851;
+              }
+
+              &.williams {
+                background: #02A9EC;
+              }
+            }
+
+            .driver-name {
+              background: #F3F3F3;
+              border-radius: 5px;
+              width: 243px;
+              height: 44px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              font-family: 'ExoBold', sans-serif;
+              font-style: normal;
+              font-weight: 700;
+              font-size: 20px;
+              line-height: 27px;
+              color: #1C1D23;
+              margin-bottom: 10px;
+            }
+
+            .driver-pts {
+              font-family: 'Bruno', sans-serif;
+              font-style: normal;
+              font-weight: 400;
+              font-size: 24px;
+              line-height: 29px;
+              color: #FFFFFF;
+              display: flex;
+              justify-content: center;
+              align-content: center;
+              text-align: center;
+              width: 125px;
+              height: 46px;
+              margin: 0 auto;
+              align-items: baseline;
+              gap: 8px;
+              padding-top: 2px;
+
+              border-width: 0px 2px 2px 2px;
+              border-style: solid;
+              border-color: #FFFFFF;
+              border-radius: 5px;
+            }
+          }
+        }
+
+        .btn-white {
+          background: #F3F3F3;
+          color: #1C1D23;
+        }
       }
     }
   }

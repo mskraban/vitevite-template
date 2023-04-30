@@ -7,7 +7,10 @@
                 <a href="#" class="btn btn-red">See more</a>
             </div>
         </section>
-        <vue-standings/>
+        <vue-standings
+            :embed-view="true"
+        >
+        </vue-standings>
         <vue-calendar/>
     </div>
 </template>

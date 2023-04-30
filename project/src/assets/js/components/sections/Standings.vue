@@ -1,5 +1,8 @@
 <template>
-    <div id="standings">
+    <div
+        id="standings"
+        :class="embedView ? 'embed' : 'page-view'"
+    >
         <div class="row">
             <div class="content">
                 <h2>Standings</h2>
@@ -8,8 +11,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="standings">
+            <div
+                class="standings"
+                :class="embedView ? 'flex-layout' : 'grid-layout'"
+            >
                 <swiper
+                    v-if="1==2"
                     slides-per-view="auto"
                     :centered-slides="true"
                     :space-between="24"
@@ -20,131 +27,56 @@
                         },
                     }"
                 >
-                    <swiper-slide>
+                    <swiper-slide
+                        v-for="item in driversData" :key="item">
                         <div class="standings-card">
-                            <div class="driver-img mercedes">
-                                <img :src="drivers[0]" alt="Lewis Hamilton">
+                            <div
+                                class="driver-img"
+                                :class="item.Constructor.constructorId"
+                            >
+                                <img
+                                    :src="getDriverImage(item.Driver.driverId)"
+                                    :alt="item.Driver.GivenName + ' ' + item.Driver.FamilyName">
                             </div>
                             <div class="driver-name">
-                                Lewis Hamilton
+                                {{ item.Driver.GivenName }}
+                                {{ item.Driver.FamilyName }}
                             </div>
                             <div class="driver-pts">
-                                <span class="pts-count">8</span>
-                                <span class="pts-copy">pts</span>
-                            </div>
-                        </div>
-                    </swiper-slide>
-
-                    <swiper-slide>
-                        <div class="standings-card">
-                            <div class="driver-img ferrari">
-                                <img :src="drivers[1]" alt="Charles Leclerc">
-                            </div>
-                            <div class="driver-name">
-                                Charles Leclerc
-                            </div>
-                            <div class="driver-pts">
-                                <span class="pts-count">6</span>
-                                <span class="pts-copy">pts</span>
-                            </div>
-                        </div>
-                    </swiper-slide>
-
-                    <swiper-slide>
-                        <div class="standings-card">
-                            <div class="driver-img redbull">
-                                <img :src="drivers[2]" alt="Max Verstappen">
-                            </div>
-                            <div class="driver-name">
-                                Max Verstappen
-                            </div>
-                            <div class="driver-pts">
-                                <span class="pts-count">4</span>
-                                <span class="pts-copy">pts</span>
-                            </div>
-                        </div>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <div class="standings-card">
-                            <div class="driver-img redbull">
-                                <img :src="drivers[2]" alt="Max Verstappen">
-                            </div>
-                            <div class="driver-name">
-                                Max Verstappen
-                            </div>
-                            <div class="driver-pts">
-                                <span class="pts-count">4</span>
-                                <span class="pts-copy">pts</span>
-                            </div>
-                        </div>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <div class="standings-card">
-                            <div class="driver-img redbull">
-                                <img :src="drivers[2]" alt="Max Verstappen">
-                            </div>
-                            <div class="driver-name">
-                                Max Verstappen
-                            </div>
-                            <div class="driver-pts">
-                                <span class="pts-count">4</span>
-                                <span class="pts-copy">pts</span>
-                            </div>
-                        </div>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <div class="standings-card">
-                            <div class="driver-img redbull">
-                                <img :src="drivers[2]" alt="Max Verstappen">
-                            </div>
-                            <div class="driver-name">
-                                Max Verstappen
-                            </div>
-                            <div class="driver-pts">
-                                <span class="pts-count">4</span>
-                                <span class="pts-copy">pts</span>
-                            </div>
-                        </div>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <div class="standings-card">
-                            <div class="driver-img redbull">
-                                <img :src="drivers[2]" alt="Max Verstappen">
-                            </div>
-                            <div class="driver-name">
-                                Max Verstappen
-                            </div>
-                            <div class="driver-pts">
-                                <span class="pts-count">4</span>
-                                <span class="pts-copy">pts</span>
-                            </div>
-                        </div>
-                    </swiper-slide>
-                    <swiper-slide>
-                        <div class="standings-card">
-                            <div class="driver-img redbull">
-                                <img :src="drivers[2]" alt="Max Verstappen">
-                            </div>
-                            <div class="driver-name">
-                                Max Verstappen
-                            </div>
-                            <div class="driver-pts">
-                                <span class="pts-count">4</span>
+                                <span class="pts-count">{{ item.points }}</span>
                                 <span class="pts-copy">pts</span>
                             </div>
                         </div>
                     </swiper-slide>
                 </swiper>
+
+                <div v-for="item in driversData"   :key="item" class="standings-card">
+                    <div
+                        class="driver-img"
+                        :class="item.Constructor.constructorId"
+                    >
+                        <img
+                            :src="getDriverImage(item.Driver.driverId)"
+                            :alt="item.Driver.GivenName + ' ' + item.Driver.FamilyName">
+                    </div>
+                    <div class="driver-name">
+                        {{ item.Driver.GivenName }}
+                        {{ item.Driver.FamilyName }}
+                    </div>
+                    <div class="driver-pts">
+                        <span class="pts-count">{{ item.points }}</span>
+                        <span class="pts-copy">pts</span>
+                    </div>
+                </div>
                 <a href="#" class="btn btn-white">Full standings</a>
             </div>
         </div>
     </div>
 </template>
 
+
 <script>
-import driver01 from '../../../images/lewis.png'
-import driver02 from '../../../images/charles.png'
-import driver03 from '../../../images/max.png'
+const driverImages = import.meta.glob("/src/assets/images/drivers/2023/*")
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import axios from 'axios';
 import parser from 'xml2json-light'
@@ -164,17 +96,14 @@ export default {
     },
     data() {
         return {
-            drivers: [
-                driver01, 
-                driver02, 
-                driver03,
-            ],
             expanded: false,
             driversData: null,
         };
     },
     mounted() {
         this.getDriverStandings();
+        this.getDriverImage('norris');
+
     },
     methods: {
         getDriverStandings() {
@@ -185,8 +114,6 @@ export default {
             // trigger endpoint after first page load, set version
             // save date instead of version
             // refresh content every day - if there is 1 day diff
-          
-            this.driversData = this.parseXml(data);
 
             if (!version || version < currentVersion) {
                 axios.get('http://ergast.com/api/f1/current/driverStandings')
@@ -201,11 +128,20 @@ export default {
                         // handle error
                         console.log(error);
                     });
+            } else {
+                this.driversData = this.parseXml(data);
+                this.driversData = this.driversData.MRData.StandingsTable.StandingsList.DriverStanding;
             }
         },
         parseXml(xmlData) {
             return parser.xml2json(xmlData);
-        }
+        },
+        getDriverImage(driverName) {
+            const drivers = Object.keys(driverImages);
+            const matchedDriver = drivers.findIndex(element => element.includes(driverName))
+
+            return drivers[matchedDriver];
+        },
     }
 };
 </script>
