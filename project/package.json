@@ -19,9 +19,12 @@
     "patch-package": "^7.0.0",
     "swiper": "^9.2.0",
     "vue": "^3.2.45",
+    "vue-breakpoint-compass": "^1.2.2",
     "vue-custom-element": "^3.3.0",
     "vue-meta": "^2.4.0",
     "vue-router": "^4.1.6",
+    "vue-screen": "^2.2.0",
+    "vue-screen-utils": "^1.0.0-beta.13",
     "xml2json-light": "^1.0.6"
   },
   "devDependencies": {

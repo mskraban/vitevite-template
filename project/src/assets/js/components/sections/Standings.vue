@@ -3,6 +3,7 @@
         id="standings"
         :class="embedView ? 'embed' : 'page-view'"
     >
+
         <div class="row">
             <div class="content">
                 <h2>Standings</h2>
@@ -15,8 +16,30 @@
                 class="standings"
                 :class="embedView ? 'flex-layout' : 'grid-layout'"
             >
+                <div v-if="$grid.lg && !embedView" class="wrapper">
+                    <div v-for="item in driversData" :key="item" class="standings-card">
+                        <div
+                            class="driver-img"
+                            :class="item.Constructor.constructorId"
+                        >
+                            <img
+                                :src="getDriverImage(item.Driver.driverId)"
+                                :alt="item.Driver.GivenName + ' ' + item.Driver.FamilyName"
+                                loading="lazy"
+                            >
+                        </div>
+                        <div class="driver-name">
+                            {{ item.Driver.GivenName }}
+                            {{ item.Driver.FamilyName }}
+                        </div>
+                        <div class="driver-pts">
+                            <span class="pts-count">{{ item.points }}</span>
+                            <span class="pts-copy">pts</span>
+                        </div>
+                    </div>
+                </div>
                 <swiper
-                    v-if="1==2"
+                    v-else
                     slides-per-view="auto"
                     :centered-slides="true"
                     :space-between="24"
@@ -50,27 +73,14 @@
                     </swiper-slide>
                 </swiper>
 
-                <div v-for="item in driversData"   :key="item" class="standings-card">
-                    <div
-                        class="driver-img"
-                        :class="item.Constructor.constructorId"
-                    >
-                        <img
-                            :src="getDriverImage(item.Driver.driverId)"
-                            :alt="item.Driver.GivenName + ' ' + item.Driver.FamilyName"
-                            loading="lazy"
-                        >
-                    </div>
-                    <div class="driver-name">
-                        {{ item.Driver.GivenName }}
-                        {{ item.Driver.FamilyName }}
-                    </div>
-                    <div class="driver-pts">
-                        <span class="pts-count">{{ item.points }}</span>
-                        <span class="pts-copy">pts</span>
-                    </div>
-                </div>
-                <a href="#" class="btn btn-white">Full standings</a>
+                <router-link 
+                    v-if="embedView" 
+                    to="/standings" 
+                    class="btn btn-white"
+                    @click="scrollToTop"
+                >
+                    Full standings
+                </router-link>
             </div>
         </div>
     </div>
@@ -105,26 +115,32 @@ export default {
     mounted() {
         this.getDriverStandings();
         this.getDriverImage('norris');
-
     },
     methods: {
         getDriverStandings() {
-            const currentVersion = 2
             let data = localStorage.getItem('driverStandings')
             const version = localStorage.getItem('driverStandingsVersion')
 
+            const date = new Date();
+            const combinedDate =
+                date.getHours() + '/' +
+                date.getDay() + '/' +
+                date.getMonth() + '/' +
+                date.getFullYear();
+            console.log(version)
+            console.log(combinedDate)
             // trigger endpoint after first page load, set version
             // save date instead of version
             // refresh content every day - if there is 1 day diff
 
-            if (!version || version < currentVersion) {
+            if (!version || version !== combinedDate) {
                 axios.get('http://ergast.com/api/f1/current/driverStandings')
                     .then(response => {
                         // handle success
                         console.log(response.data);
                         data = response.data;
                         localStorage.setItem('driverStandings', data)
-                        localStorage.setItem('driverStandingsVersion', currentVersion)
+                        localStorage.setItem('driverStandingsVersion', combinedDate)
                     })
                     .catch(error => {
                         // handle error
@@ -143,6 +159,9 @@ export default {
             const matchedDriver = drivers.findIndex(element => element.includes(driverName))
 
             return drivers[matchedDriver];
+        },
+        scrollToTop() {
+            window.scrollTo(0,0);
         },
     }
 };

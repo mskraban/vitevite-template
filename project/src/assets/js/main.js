@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import {createRouter, createWebHistory} from 'vue-router'
 import '../scss/main.scss'
+import VueScreen from 'vue-screen';
 import App from './components/App.vue'
 import { defineCustomElement } from 'vue'
 
@@ -48,6 +49,7 @@ router.beforeEach((to, from, next) => {
 
 createApp(App)
     .use(router)
+    .use(VueScreen, 'bootstrap')
     .component('VueNavigation', Navigation)
     .component('VueStandings', Standings)
     .component('VueCalendar', Calendar)

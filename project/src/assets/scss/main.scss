@@ -546,11 +546,13 @@ body {
           }
 
           &.grid-layout {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            max-width: 1090px;
-            margin: 0 auto;
+            .wrapper {
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 24px;
+              max-width: 1090px;
+              margin: 0 auto;
+            }
           }
 
           .swiper {
@@ -559,11 +561,10 @@ body {
             box-sizing: content-box;
             max-width: 778px;
 
-            @include media-breakpoint-down(md) {
+            @include media-breakpoint-down(lg) {
               padding-left: 2rem;
               padding-right: 2rem;
-              margin-left: 0;
-              margin-right: 0;
+              margin: 0 auto;
             }
 
             .swiper-slide {
