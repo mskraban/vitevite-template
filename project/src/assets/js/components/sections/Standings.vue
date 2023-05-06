@@ -142,6 +142,8 @@ export default {
                         data = response.data;
                         localStorage.setItem('driverStandings', data)
                         localStorage.setItem('driverStandingsVersion', combinedDate)
+                        this.driversData = this.parseXml(data);
+                        this.driversData = this.driversData.MRData.StandingsTable.StandingsList.DriverStanding;
                     })
                     .catch(error => {
                         // handle error
@@ -151,6 +153,7 @@ export default {
                 this.driversData = this.parseXml(data);
                 this.driversData = this.driversData.MRData.StandingsTable.StandingsList.DriverStanding;
             }
+          
         },
         parseXml(xmlData) {
             return parser.xml2json(xmlData);
