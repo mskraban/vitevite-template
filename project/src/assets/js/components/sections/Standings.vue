@@ -5,9 +5,10 @@
     >
 
         <div class="row">
-            <div class="content">
-                <h2>Standings</h2>
-                <p>The F1 top 3 driver standings rank the most successful drivers in the Formula One World Championship
+            <slot name="embedContent" />
+            <div v-if="!embedView" class="content">
+                <h1>Standings</h1>
+                <p>The F1 top driver standings rank the most successful drivers in the Formula One World Championship
                     based on points earned in each race.</p>
             </div>
         </div>

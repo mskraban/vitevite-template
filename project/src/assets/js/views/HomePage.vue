@@ -10,6 +10,13 @@
         <vue-standings
             :embed-view="true"
         >
+            <template #embedContent>
+                <div class="content">
+                    <h2>Standings</h2>
+                    <p>The F1 top 3 driver standings rank the most successful drivers in the Formula One World
+                        Championship based on points earned in each race.</p>
+                </div>
+            </template>
         </vue-standings>
         <vue-calendar/>
     </div>
