@@ -8,6 +8,8 @@
         >
             <router-view></router-view>
         </transition>
+
+        <vue-footer/>
     </div>
 </template>
 

@@ -7,6 +7,7 @@ import { defineCustomElement } from 'vue'
 
 // Vue utility Components
 import Navigation from './components/navigation/Navigation.vue'
+import Footer from './components/navigation/Footer.vue'
 
 // Vue section Components
 import Standings from './components/sections/Standings.vue'
@@ -51,6 +52,7 @@ createApp(App)
     .use(router)
     .use(VueScreen, 'bootstrap')
     .component('VueNavigation', Navigation)
+    .component('VueFooter', Footer)
     .component('VueStandings', Standings)
     .component('VueCalendar', Calendar)
     .mount('#app')
