@@ -14,38 +14,67 @@
         </div>
         <div class="row">
 
-            <div class="col-12">
+            <div class="col-12 col-lg-6">
                 <div class="teams">
-                    <div class="team team-color mercedes">
+                    <div
+                        v-for="item in constructorsData" :key="item"
+                        class="team team-color mercedes"
+                        :class="item.Constructor.constructorId"
+                        @mouseover="setActiveTeam(item.Constructor.constructorId, item.Constructor.Name)"
+                    >
                         <div class="team-logo">
-                            <img src="" alt="">
+                            <img
+                                :src="getTeamImage(item.Constructor.constructorId)"
+                                :alt="item.Constructor.Name"
+                                loading="lazy"
+                            >
                         </div>
-                        <div class="team-name text-white">MERCEDES</div>
-                        <span class="more">See more</span>
+                        <div class="team-name text-white">{{ item.Constructor.Name }}</div>
+                        <span class="more">
+                            <router-link
+                                v-if="embedView"
+                                to="/standings"
+                                @click="scrollToTop"
+                            >
+                                See more
+                            </router-link>
+                        </span>
                     </div>
                 </div>
             </div>
-
-            <div class="col-12">
-                <router-link
-                    v-if="embedView"
-                    to="/standings"
-                    class="btn btn-white"
-                    @click="scrollToTop"
-                >
-                    Full standings
-                </router-link>
+          
+            <div class="col-12 col-lg-6" v-if="$grid.lg">
+                <div class="active-team">
+                    <transition
+                        name="fade"
+                        mode="out-in"
+                    >
+                        <div
+                            ref="teamLogo"
+                            :key="activeTeam"
+                            class="team-logo team-color"
+                            :class="activeTeam"
+                        >
+                            <img
+                                :src="getTeamImage(activeTeam)"
+                                loading="lazy"
+                                :alt="activeTeamName">
+                    
+                        </div>
+                    </transition>
+                </div>
             </div>
+
+
         </div>
     </div>
 </template>
 
 
 <script>
-const driverImages = import.meta.glob("/src/assets/images/drivers/2023/*")
+const teamImages = import.meta.glob("/src/assets/images/teams/2023/*")
 import axios from 'axios';
 import parser from 'xml2json-light'
-import 'swiper/css';
 
 export default {
     name: 'VueTeams',
@@ -58,17 +87,25 @@ export default {
     data() {
         return {
             expanded: false,
-            driversData: null,
+            constructorsData: null,
+            activeTeam: null,
+            activeTeamName: null,
         };
     },
     mounted() {
-        this.getDriverStandings();
-        this.getDriverImage('norris');
+        this.getConstuctorStandings();
+
+        if (this.constructorsData) {
+            this.setActiveTeam(
+                this.constructorsData[0].Constructor.constructorId,
+                this.constructorsData[0].Constructor.Name
+            );
+        }
     },
     methods: {
-        getDriverStandings() {
-            let data = localStorage.getItem('driverStandings')
-            const version = localStorage.getItem('driverStandingsVersion')
+        getConstuctorStandings() {
+            let data = localStorage.getItem('constuctorStandings')
+            const version = localStorage.getItem('constuctorStandingsVersion')
 
             const date = new Date();
             const combinedDate =
@@ -83,34 +120,41 @@ export default {
             // refresh content every day - if there is 1 day diff
 
             if (!version || version !== combinedDate) {
-                axios.get('http://ergast.com/api/f1/current/driverStandings')
+                axios.get('http://ergast.com/api/f1/current/constructorStandings')
                     .then(response => {
                         // handle success
                         console.log(response.data);
                         data = response.data;
-                        localStorage.setItem('driverStandings', data)
-                        localStorage.setItem('driverStandingsVersion', combinedDate)
-                        this.driversData = this.parseXml(data);
-                        this.driversData = this.driversData.MRData.StandingsTable.StandingsList.DriverStanding;
+                        localStorage.setItem('constuctorStandings', data)
+                        localStorage.setItem('constuctorStandingsVersion', combinedDate)
+                        this.constructorsData = this.parseXml(data);
+                        // eslint-disable-next-line max-len
+                        this.constructorsData = this.constructorsData.MRData.StandingsTable.StandingsList.ConstructorStanding;
                     })
                     .catch(error => {
                         // handle error
                         console.log(error);
                     });
             } else {
-                this.driversData = this.parseXml(data);
-                this.driversData = this.driversData.MRData.StandingsTable.StandingsList.DriverStanding;
+                this.constructorsData = this.parseXml(data);
+                console.log(this.constructorsData);
+                this.constructorsData = this.constructorsData.MRData.StandingsTable.StandingsList.ConstructorStanding;
+                console.log(this.constructorsData);
             }
           
         },
         parseXml(xmlData) {
             return parser.xml2json(xmlData);
         },
-        getDriverImage(driverName) {
-            const drivers = Object.keys(driverImages);
-            const matchedDriver = drivers.findIndex(element => element.includes(driverName))
+        getTeamImage(teamName) {
+            const teams = Object.keys(teamImages);
+            const matchedTeam = teams.findIndex(element => element.includes(teamName))
 
-            return drivers[matchedDriver];
+            return teams[matchedTeam];
+        },
+        setActiveTeam(teamId, teamName) {
+            this.activeTeam = teamId;
+            this.activeTeamName = teamName;
         },
         scrollToTop() {
             window.scrollTo(0,0);

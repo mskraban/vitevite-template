@@ -18,6 +18,7 @@
     "gsap": "^3.11.4",
     "patch-package": "^7.0.0",
     "swiper": "^9.2.0",
+    "vanilla-tilt": "^1.8.0",
     "vue": "^3.2.45",
     "vue-breakpoint-compass": "^1.2.2",
     "vue-custom-element": "^3.3.0",

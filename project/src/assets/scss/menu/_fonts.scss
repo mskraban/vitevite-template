@@ -23,6 +23,18 @@
 }
 
 @font-face {
+  font-family: 'ExoExtraBold';
+  src: url('src/assets/fonts/Exo-ExtraBold.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ExoBlack';
+  src: url('src/assets/fonts/Exo-Black.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Bruno';
   src: url('src/assets/fonts/Bruno.ttf') format('truetype');
   font-display: swap;
