@@ -3,7 +3,6 @@ import {createRouter, createWebHistory} from 'vue-router'
 import '../scss/main.scss'
 import VueScreen from 'vue-screen';
 import App from './components/App.vue'
-import { defineCustomElement } from 'vue'
 
 // Vue utility Components
 import Navigation from './components/navigation/Navigation.vue'
@@ -12,17 +11,10 @@ import Footer from './components/navigation/Footer.vue'
 // Vue section Components
 import Standings from './components/sections/Standings.vue'
 import Calendar from './components/sections/Calendar.vue'
+import Teams from './components/sections/Teams.vue'
 
 // Vue pages
 import Home from './views/HomePage.vue'
-import About from './views/AboutPage.vue'
-
-
-// Vue generates a new HTML element class from the component definition.
-const AboutExample = defineCustomElement(About)
-
-// Register the custom element so that it can be used as <dark-mode-switch>.
-customElements.define('about-example', AboutExample)
 
 const routes = [
     {
@@ -34,6 +26,16 @@ const routes = [
         path: '/standings',
         name: 'Standings',
         component: Standings
+    },
+    {
+        path: '/calendar',
+        name: 'Calendar',
+        component: Calendar
+    },
+    {
+        path: '/teams',
+        name: 'Teams',
+        component: Teams
     },
 ]
 
