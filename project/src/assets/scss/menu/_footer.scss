@@ -2,11 +2,21 @@
 
 footer {
   background: #F3F3F3;
+  border-top: 2px solid #1c1d23;
 
   .container {
     padding-top: 82px;
     padding-bottom: 62px;
     max-width: 990px;
+
+    @include media-breakpoint-down(lg) {
+      max-width: 640px
+    }
+
+    @include media-breakpoint-down(md) {
+      max-width: 460px;
+      padding: 52px 2rem 62px;
+    }
 
     .logo {
       display: flex;
@@ -15,6 +25,11 @@ footer {
         width: 56px;
         height: 61px;
         margin-right: 24px;
+
+        @include media-breakpoint-down(sm) {
+          width: 50px;
+          height: 60px;
+        }
       }
 
       .copy {
@@ -26,6 +41,11 @@ footer {
           line-height: 39px;
           color: #1C1D23;
           margin-bottom: 8px;
+
+          @include media-breakpoint-down(sm) {
+            font-size: 28px;
+            margin-bottom: 2px;
+          }
         }
 
         p {
@@ -35,6 +55,10 @@ footer {
           font-size: 18px;
           line-height: 27px;
           color: #1C1D23;
+
+          @include media-breakpoint-down(sm) {
+            font-size: 16px;
+          }
         }
       }
     }
@@ -47,6 +71,7 @@ footer {
       line-height: 27px;
       color: #1C1D23;
       margin-bottom: 12px;
+      text-transform: uppercase;
     }
 
     ul {

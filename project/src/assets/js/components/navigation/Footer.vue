@@ -2,7 +2,7 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-12 col-lg-6">
+                <div class="col-12 col-lg-6 mb-5 mb-lg-0">
                     <div class="logo">
                         <img
                             :src="images[1]"
@@ -13,7 +13,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-3">
+                <div class="col-lg-3 col-6">
                     <div class="category-title">
                         Page
                     </div>
@@ -24,7 +24,7 @@
                         <li><a href="#">Lorem ipsum</a></li>
                     </ul>
                 </div>
-                <div class="col-12 col-lg-3">
+                <div class="col-lg-3 col-6">
                     <div class="category-title">
                         Page
                     </div>
