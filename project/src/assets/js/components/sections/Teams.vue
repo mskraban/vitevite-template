@@ -1,82 +1,35 @@
 <template>
     <div
-        id="standings"
+        id="teams"
+        class="container"
         :class="embedView ? 'embed' : 'page-view'"
     >
 
         <div class="row">
             <slot name="embedContent" />
             <div v-if="!embedView" class="content">
-                <h1>Standings</h1>
-                <p>The F1 top driver standings rank the most successful drivers in the Formula One World Championship
-                    based on points earned in each race.</p>
+                <h1>Teams</h1>
+                <p>Complete list of 2023 F1 teams</p>
             </div>
         </div>
         <div class="row">
-            <div
-                class="standings"
-                :class="embedView ? 'flex-layout' : 'grid-layout'"
-            >
-                <div v-if="$grid.lg && !embedView" class="wrapper">
-                    <div v-for="item in driversData" :key="item" class="standings-card">
-                        <div
-                            class="driver-img"
-                            :class="item.Constructor.constructorId"
-                        >
-                            <img
-                                :src="getDriverImage(item.Driver.driverId)"
-                                :alt="item.Driver.GivenName + ' ' + item.Driver.FamilyName"
-                                loading="lazy"
-                            >
+
+            <div class="col-12">
+                <div class="teams">
+                    <div class="team team-color mercedes">
+                        <div class="team-logo">
+                            <img src="" alt="">
                         </div>
-                        <div class="driver-name">
-                            {{ item.Driver.GivenName }}
-                            {{ item.Driver.FamilyName }}
-                        </div>
-                        <div class="driver-pts">
-                            <span class="pts-count">{{ item.points }}</span>
-                            <span class="pts-copy">pts</span>
-                        </div>
+                        <div class="team-name text-white">MERCEDES</div>
+                        <span class="more">See more</span>
                     </div>
                 </div>
-                <swiper
-                    v-else
-                    slides-per-view="auto"
-                    :centered-slides="true"
-                    :space-between="24"
-                    :breakpoints="{
-                        768: {
-                            slidesPerView: 3,
-                            centeredSlides: false,
-                        },
-                    }"
-                >
-                    <swiper-slide
-                        v-for="item in driversData" :key="item">
-                        <div class="standings-card">
-                            <div
-                                class="driver-img"
-                                :class="item.Constructor.constructorId"
-                            >
-                                <img
-                                    :src="getDriverImage(item.Driver.driverId)"
-                                    :alt="item.Driver.GivenName + ' ' + item.Driver.FamilyName">
-                            </div>
-                            <div class="driver-name">
-                                {{ item.Driver.GivenName }}
-                                {{ item.Driver.FamilyName }}
-                            </div>
-                            <div class="driver-pts">
-                                <span class="pts-count">{{ item.points }}</span>
-                                <span class="pts-copy">pts</span>
-                            </div>
-                        </div>
-                    </swiper-slide>
-                </swiper>
+            </div>
 
-                <router-link 
-                    v-if="embedView" 
-                    to="/standings" 
+            <div class="col-12">
+                <router-link
+                    v-if="embedView"
+                    to="/standings"
                     class="btn btn-white"
                     @click="scrollToTop"
                 >
@@ -90,17 +43,12 @@
 
 <script>
 const driverImages = import.meta.glob("/src/assets/images/drivers/2023/*")
-import {Swiper, SwiperSlide} from 'swiper/vue';
 import axios from 'axios';
 import parser from 'xml2json-light'
 import 'swiper/css';
 
 export default {
     name: 'VueTeams',
-    components: {
-        Swiper,
-        SwiperSlide,
-    },
     props: {
         embedView: {
             type: Boolean,

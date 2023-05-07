@@ -26,9 +26,8 @@
         >
             <template #embedContent>
                 <div class="content">
-                    <h2>Standings</h2>
-                    <p>The F1 top 3 driver standings rank the most successful drivers in the Formula One World
-                        Championship based on points earned in each race.</p>
+                    <h3>Teams</h3>
+                    <p>Complete list of 2023 F1 teams</p>
                 </div>
             </template>
         </vue-teams>
