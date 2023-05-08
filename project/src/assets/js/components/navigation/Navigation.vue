@@ -14,10 +14,10 @@
             >
                 <router-link to="/" @click="closeExpand">Home</router-link>
                 <router-link to="/standings" @click="closeExpand">Standings</router-link>
+                <router-link to="/teams" @click="closeExpand">Teams</router-link>
                 <router-link to="/tracks" @click="closeExpand">Tracks</router-link>
                 <router-link to="/calendar" @click="closeExpand">Calendar</router-link>
                 <router-link to="/drivers" @click="closeExpand">Drivers</router-link>
-                <router-link to="/teams" @click="closeExpand">Teams</router-link>
                 <router-link to="/events" @click="closeExpand">Events</router-link>
                 <router-link to="/news" @click="closeExpand">News</router-link>
             </div>

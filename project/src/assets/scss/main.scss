@@ -940,195 +940,196 @@ body {
       padding-bottom: 120px;
       overflow: hidden;
 
-      .row {
-        .content {
-          margin: 0 auto 80px;
-          max-width: 100%;
+      .content {
+        margin: 0 auto 40px;
+        max-width: 100%;
 
-          @include media-breakpoint-down(md) {
-            margin: 0 auto 60px;
-          }
-
-          h1, h2 {
-            font-family: 'Bruno', sans-serif;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 48px;
-            line-height: 58px;
-            color: #F3F3F3;
-            margin-bottom: 8px;
-            text-align: center;
-          }
-
-          p {
-            font-family: 'Exo', sans-serif;
-            font-style: normal;
-            font-weight: 400;
-            font-size: 20px;
-            line-height: 27px;
-            color: #F3F3F3;
-            margin-bottom: 0;
+        @include media-breakpoint-down(lg) {
+          h1, h2, h3, p {
             text-align: center;
           }
         }
 
-        .standings {
-          &.flex-layout {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            max-width: 778px;
-            margin: 0 auto;
-            flex-direction: column;
+        @include media-breakpoint-down(md) {
+          margin: 0 auto 60px;
+        }
+
+        h1, h2, h3 {
+          font-family: 'Bruno', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 48px;
+          line-height: 58px;
+          color: #F3F3F3;
+          margin-bottom: 8px;
+        }
+
+        p {
+          font-family: 'Exo', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 27px;
+          color: #F3F3F3;
+          margin-bottom: 0;
+        }
+      }
+
+      &.container {
+        max-width: 990px;
+      }
+
+      .teams {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 30px;
+        max-width: 1090px;
+
+        @include media-breakpoint-down(lg) {
+          grid-template-columns: repeat(1, 1fr);
+          max-width: 540px;
+          margin: 0 auto;
+        }
+
+        @media (max-width: 504px) {
+          max-width: 328px;
+        }
+
+        .team {
+          position: relative;
+          height: 248px;
+
+          @media (max-width: 504px) {
+            width: 100%;
+            height: 160px;
+            margin-bottom: 30px;
           }
 
-          &.grid-layout {
-            .wrapper {
-              display: grid;
-              grid-template-columns: repeat(4, 1fr);
-              gap: 24px;
-              max-width: 1090px;
-              margin: 0 auto;
+          &:hover {
+            .car-card {
+              border-color: #FFFFFF;
+              cursor: pointer;
             }
           }
 
-          .swiper {
-            padding: 1.5rem;
-            margin: -1.5rem;
-            box-sizing: content-box;
-            max-width: 778px;
+          .car-card {
+            height: 188px;
+            margin-bottom: 14px;
+            position: relative;
+            border-width: 2px 2px 0px 2px;
+            border-radius: 5px;
+            border-style: solid;
+            border-color: transparent;
+            transition: ease-in-out all 0.2s;
 
-            @include media-breakpoint-down(lg) {
-              padding-left: 2rem;
-              padding-right: 2rem;
-              margin: 0 auto;
+            @media (max-width: 504px) {
+              max-width: 328px;
+              height: 121px;
+             margin-bottom: 10px;
             }
 
-            .swiper-slide {
-              @include media-breakpoint-down(md) {
-                max-width: 243px;
+            .team-logo {
+              position: absolute;
+              width: 35px;
+              height: 35px;
+              left: 16px;
+              top: 16px;
+
+              @media (max-width: 504px) {
+                left: 10px;
+                top: 10px;
+                width: 23px;
+                height: 23px;
               }
-            }
-          }
-
-          .btn {
-            margin-top: calc(60px - 1.5rem);
-          }
-
-          .standings-card {
-            width: 243px;
-            transition: transform 0.3s ease;
-
-            &:hover {
-              transform: scale(1.1);
-
-              .driver-img {
-                img {
-                  filter: brightness(1.25);
-                }
-              }
-            }
-
-            .driver-img {
-              border-radius: 5px;
-              height: 206px;
-              margin-bottom: 12px;
-              display: flex;
-              justify-content: center;
-              align-content: flex-end;
 
               img {
-                transition: filter 0.3s ease-in-out;
-              }
-
-              &.mercedes {
-                background: #02D2BE;
-              }
-
-              &.ferrari {
-                background: #FE0000;
-              }
-
-              &.red_bull {
-                background: #171961;
-              }
-
-              &.aston_martin {
-                background: #035850;
-              }
-
-              &.mclaren {
-                background: #FF8801;
-              }
-
-              &.haas {
-                background: #EE1A3B;
-              }
-
-              &.alfa {
-                background: #9B0000;
-              }
-
-              &.alpine {
-                background: #0E1C2C;
-              }
-
-              &.alphatauri {
-                background: #262851;
-              }
-
-              &.williams {
-                background: #02A9EC;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
               }
             }
 
-            .driver-name {
-              background: #F3F3F3;
-              border-radius: 5px;
-              width: 243px;
-              height: 44px;
+            .team-car {
+              position: absolute;
+              width: 341px;
+              height: 101px;
+              left: 50%;
+              transform: translateX(-50%);
+              bottom: 16px;
+
+              @media (max-width: 504px) {
+                width: 100%;
+                max-width: 220px;
+                height: 65px;
+                bottom: 10px;
+              }
+
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
+            }
+
+            .team-name {
+              font-family: 'ExoExtraBold', sans-serif;
+              font-style: normal;
+              font-weight: 900;
+              font-size: 20px;
+              line-height: 27px;
+              display: flex;
+              align-items: center;
+              color: #F3F3F3;
+              text-transform: uppercase;
+              position: absolute;
+              top: 16px;
+              right: 16px;
+
+              @media (max-width: 504px) {
+                font-size: 14px;
+                line-height: 27px;
+                top: 10px;
+                right: 10px;
+              }
+            }
+          }
+
+          .drivers {
+            display: flex;
+            justify-content: space-between;
+            gap: 36px;
+
+            @media (max-width: 504px) {
+              gap: 24px;
+            }
+
+            .driver {
+              max-width: 214px;
+              width: 100%;
+              height: 46px;
               display: flex;
               justify-content: center;
               align-items: center;
-              text-align: center;
-              font-family: 'ExoBold', sans-serif;
-              font-style: normal;
-              font-weight: 700;
-              font-size: 20px;
-              line-height: 27px;
-              color: #1C1D23;
-              margin-bottom: 10px;
-            }
-
-            .driver-pts {
-              font-family: 'Bruno', sans-serif;
-              font-style: normal;
-              font-weight: 400;
-              font-size: 20px;
-              line-height: 32px;
-              color: #FFFFFF;
-              display: flex;
-              justify-content: center;
-              align-content: center;
-              text-align: center;
-              width: 125px;
-              height: 46px;
-              margin: 0 auto;
-              align-items: baseline;
-              gap: 8px;
-              padding-top: 2px;
-
               border-width: 0px 2px 2px 2px;
               border-style: solid;
               border-color: #FFFFFF;
               border-radius: 5px;
+              font-family: 'Bruno', sans-serif;
+              font-style: normal;
+              font-weight: 400;
+              font-size: 20px;
+              line-height: 24px;
+              text-align: center;
+              color: #FFFFFF;
+
+              @media (max-width: 504px) {
+                max-width: 100%;
+                width: 100%;
+                font-size: 14px;
+                line-height: 17px;
+              }
             }
           }
-        }
-
-        .btn-white {
-          background: #F3F3F3;
-          color: #1C1D23;
         }
       }
     }

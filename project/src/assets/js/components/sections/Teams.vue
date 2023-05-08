@@ -12,8 +12,10 @@
                 <p>Complete list of 2023 F1 teams</p>
             </div>
         </div>
-        <div class="row">
-
+        <div
+            v-if="embedView"
+            class="row"
+        >
             <div class="col-12 col-lg-6">
                 <div class="teams">
                     <div
@@ -21,6 +23,7 @@
                         class="team team-color mercedes"
                         :class="item.Constructor.constructorId"
                         @mouseover="setActiveTeam(item.Constructor.constructorId, item.Constructor.Name)"
+                        @click="toggleRoute"
                     >
                         <div class="team-logo">
                             <img
@@ -33,7 +36,7 @@
                         <span class="more">
                             <router-link
                                 v-if="embedView"
-                                to="/standings"
+                                to="/teams"
                                 @click="scrollToTop"
                             >
                                 See more
@@ -44,7 +47,7 @@
             </div>
           
             <div 
-                v-if="$grid.lg && activeTeam" 
+                v-if="$grid.lg && activeTeam"
                 class="col-12 col-lg-6"
             >
                 <div class="active-team">
@@ -70,12 +73,53 @@
 
 
         </div>
+        <div
+            v-else
+            class="row"
+        >
+            <div class="col-12 col-lg-12">
+                <div class="teams">
+                    <div
+                        v-for="item in constructorsData" :key="item"
+                        class="team"
+                        @mouseover="setActiveTeam(item.Constructor.constructorId, item.Constructor.Name)"
+                        @click="toggleRoute"
+                    >
+                        <div
+                            class="car-card team-color"
+                            :class="item.Constructor.constructorId"
+                        >
+                            <div class="team-logo">
+                                <img
+                                    :src="getTeamImage(item.Constructor.constructorId)"
+                                    :alt="item.Constructor.Name"
+                                    loading="lazy"
+                                >
+                            </div>
+                            <div class="team-car">
+                                <img
+                                    :src="getTeamCarImage(item.Constructor.constructorId)"
+                                    :alt="item.Constructor.Name"
+                                    loading="lazy"
+                                >
+                            </div>
+                            <div class="team-name text-white">{{ item.Constructor.Name }}</div>
+                        </div>
+                        <div class="drivers">
+                            <div class="driver driver-left">Hammilton</div>
+                            <div class="driver driver-right">Russel</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 
 <script>
 const teamImages = import.meta.glob("/src/assets/images/teams/2023/*")
+const teamCars = import.meta.glob("/src/assets/images/cars/2023/*")
 import axios from 'axios';
 import parser from 'xml2json-light'
 
@@ -155,12 +199,21 @@ export default {
 
             return teams[matchedTeam];
         },
+        getTeamCarImage(teamName) {
+            const teams = Object.keys(teamCars);
+            const matchedTeam = teams.findIndex(element => element.includes(teamName))
+
+            return teams[matchedTeam];
+        },
         setActiveTeam(teamId, teamName) {
             this.activeTeam = teamId;
             this.activeTeamName = teamName;
         },
         scrollToTop() {
             window.scrollTo(0,0);
+        },
+        toggleRoute() {
+            this.$router.push({ path: '/teams' })
         },
     }
 };
