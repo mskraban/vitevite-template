@@ -43,10 +43,13 @@
                 </div>
             </div>
           
-            <div class="col-12 col-lg-6" v-if="$grid.lg">
+            <div 
+                v-if="$grid.lg && activeTeam" 
+                class="col-12 col-lg-6"
+            >
                 <div class="active-team">
                     <transition
-                        name="fade"
+                        name="bounce"
                         mode="out-in"
                     >
                         <div
