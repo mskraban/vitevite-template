@@ -134,6 +134,7 @@ export default {
     data() {
         return {
             expanded: false,
+            driversData: null,
             constructorsData: null,
             activeTeam: null,
             activeTeamName: null,
@@ -141,6 +142,7 @@ export default {
     },
     mounted() {
         this.getConstuctorStandings();
+        this.getDriverStandings();
 
         if (this.constructorsData) {
             this.setActiveTeam(
@@ -148,8 +150,47 @@ export default {
                 this.constructorsData[0].Constructor.Name
             );
         }
+
+        this.getTeamDrivers('mercedes');
     },
     methods: {
+        getDriverStandings() {
+            let data = localStorage.getItem('driverStandings')
+            const version = localStorage.getItem('driverStandingsVersion')
+
+            const date = new Date();
+            const combinedDate =
+                date.getHours() + '/' +
+                date.getDay() + '/' +
+                date.getMonth() + '/' +
+                date.getFullYear();
+            console.log(version)
+            console.log(combinedDate)
+            // trigger endpoint after first page load, set version
+            // save date instead of version
+            // refresh content every day - if there is 1 day diff
+
+            if (!version || version !== combinedDate) {
+                axios.get('http://ergast.com/api/f1/current/driverStandings')
+                    .then(response => {
+                        // handle success
+                        console.log(response.data);
+                        data = response.data;
+                        localStorage.setItem('driverStandings', data)
+                        localStorage.setItem('driverStandingsVersion', combinedDate)
+                        this.driversData = this.parseXml(data);
+                        this.driversData = this.driversData.MRData.StandingsTable.StandingsList.DriverStanding;
+                    })
+                    .catch(error => {
+                        // handle error
+                        console.log(error);
+                    });
+            } else {
+                this.driversData = this.parseXml(data);
+                this.driversData = this.driversData.MRData.StandingsTable.StandingsList.DriverStanding;
+            }
+
+        },
         getConstuctorStandings() {
             let data = localStorage.getItem('constuctorStandings')
             const version = localStorage.getItem('constuctorStandingsVersion')
@@ -208,6 +249,17 @@ export default {
         setActiveTeam(teamId, teamName) {
             this.activeTeam = teamId;
             this.activeTeamName = teamName;
+        },
+        getTeamDrivers(teamName) {
+            const drivers = this.driversData;
+            console.log(drivers);
+
+            // for each item in array drivers
+            // check if constructorId == teamName
+            // if true, then get driverId and push to array named after constructorId
+            // find array name with constructor id and return both 2 entries
+
+            return drivers;
         },
         scrollToTop() {
             window.scrollTo(0,0);
