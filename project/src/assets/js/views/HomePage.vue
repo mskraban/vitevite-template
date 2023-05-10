@@ -1,6 +1,11 @@
 <template>
     <div class="home">
         <section id="hero">
+            <picture>
+                <source srcset="/src/assets/images/01_hero.webp" type="image/webp">
+                <source srcset="/src/assets/images/01_hero.jpg" type="image/jpeg">
+                <img src="/src/assets/images/01_hero.jpg" alt="Haas at Spielberg F1 Qualification 2022" rel="preload">
+            </picture>
             <div class="content">
                 <h1>Next F1 race in:</h1>
                 <p>14 days 13 hours 54min 43s</p>

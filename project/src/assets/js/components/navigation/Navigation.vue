@@ -24,7 +24,8 @@
             <div
                 class="menu-icon d-inline-flex d-md-none"
                 @click="toggleExpand">
-                <input class="menu-icon__cheeckbox" type="checkbox"/>
+                <input class="menu-icon__cheeckbox" name="menu" type="checkbox"/>
+                <label for="menu" class="d-none">Menu</label>
                 <div>
                     <span></span>
                     <span></span>
