@@ -106,8 +106,8 @@
                             <div class="team-name text-white">{{ item.Constructor.Name }}</div>
                         </div>
                         <div class="drivers">
-                            <div class="driver driver-left">Hammilton</div>
-                            <div class="driver driver-right">Russel</div>
+                            <div class="driver driver-left" v-html="getTeamDrivers(item.Constructor.constructorId, 0)"/>
+                            <div class="driver driver-right" v-html="getTeamDrivers(item.Constructor.constructorId, 1)"/>
                         </div>
                     </div>
                 </div>
@@ -150,8 +150,6 @@ export default {
                 this.constructorsData[0].Constructor.Name
             );
         }
-
-        this.getTeamDrivers('mercedes');
     },
     methods: {
         getDriverStandings() {
@@ -250,16 +248,17 @@ export default {
             this.activeTeam = teamId;
             this.activeTeamName = teamName;
         },
-        getTeamDrivers(teamName) {
+        getTeamDrivers(teamName, position) {
             const drivers = this.driversData;
-            console.log(drivers);
+            const teamDrivers = [];
 
-            // for each item in array drivers
-            // check if constructorId == teamName
-            // if true, then get driverId and push to array named after constructorId
-            // find array name with constructor id and return both 2 entries
+            drivers.forEach((driver) => {
+                if (driver.Constructor.constructorId === teamName) {
+                    teamDrivers.push(driver.Driver.GivenName + ' ' + driver.Driver.FamilyName)
+                }
+            })
 
-            return drivers;
+            return teamDrivers[position];
         },
         scrollToTop() {
             window.scrollTo(0,0);
