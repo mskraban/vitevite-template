@@ -555,7 +555,7 @@ body {
               font-family: 'ExoBold', sans-serif;
               font-style: normal;
               font-weight: 700;
-              font-size: 18px;
+              font-size: 20px;
               line-height: 27px;
               color: #1C1D23;
               margin-bottom: 10px;
@@ -865,6 +865,10 @@ body {
                 .more {
                   opacity: 1;
                   user-select: initial;
+
+                  &:focus {
+                    color: #1C1D23;
+                  }
                 }
               }
             }
@@ -1016,6 +1020,7 @@ body {
         .team {
           position: relative;
           height: 248px;
+          text-decoration: none;
 
           @media (max-width: 504px) {
             width: 100%;
@@ -1024,9 +1029,16 @@ body {
           }
 
           &:hover {
-            .car-card {
-              border-color: #FFFFFF;
-              cursor: pointer;
+            @include media-breakpoint-up(md) {
+              .car-card {
+                border-color: #FFFFFF;
+                cursor: pointer;
+
+                .team-car {
+                  width: 377px;
+                  height: 110px;
+                }
+              }
             }
           }
 
@@ -1038,12 +1050,12 @@ body {
             border-radius: 5px;
             border-style: solid;
             border-color: transparent;
-            transition: ease-in-out all 0.2s;
+            transition: ease-in-out all 0.3s;
 
             @media (max-width: 504px) {
               max-width: 328px;
               height: 121px;
-             margin-bottom: 10px;
+              margin-bottom: 10px;
             }
 
             .team-logo {
@@ -1074,6 +1086,7 @@ body {
               left: 50%;
               transform: translateX(-50%);
               bottom: 16px;
+              transition: all ease-in-out 0.2s;
 
               @media (max-width: 504px) {
                 width: 100%;
@@ -1135,16 +1148,32 @@ body {
               font-family: 'Bruno', sans-serif;
               font-style: normal;
               font-weight: 400;
-              font-size: 20px;
+              font-size: 18px;
               line-height: 24px;
               text-align: center;
               color: #FFFFFF;
+              text-decoration: none;
+              transition: all ease 0.2s;
 
               @media (max-width: 504px) {
                 max-width: 100%;
                 width: 100%;
-                font-size: 14px;
+                font-size: 12px;
                 line-height: 17px;
+              }
+
+              @include media-breakpoint-up(md) {
+                &.driver-left {
+                  &:hover {
+                    transform: scale(1.1) translateX(10px);
+                  }
+                }
+
+                &.driver-right {
+                  &:hover {
+                    transform: scale(1.1) translateX(-10px);
+                  }
+                }
               }
             }
           }

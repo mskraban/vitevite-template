@@ -79,9 +79,10 @@
         >
             <div class="col-12 col-lg-12">
                 <div class="teams">
-                    <div
+                    <a
                         v-for="item in constructorsData" :key="item"
                         class="team"
+                        :href="slugify(item.Constructor.Name)"
                         @mouseover="setActiveTeam(item.Constructor.constructorId, item.Constructor.Name)"
                         @click="toggleRoute"
                     >
@@ -106,10 +107,18 @@
                             <div class="team-name text-white">{{ item.Constructor.Name }}</div>
                         </div>
                         <div class="drivers">
-                            <div class="driver driver-left" v-html="getTeamDrivers(item.Constructor.constructorId, 0)"/>
-                            <div class="driver driver-right" v-html="getTeamDrivers(item.Constructor.constructorId, 1)"/>
+                            <a
+                                :href="slugify(getTeamDriversNames(item.Constructor.constructorId, 0))"
+                                class="driver driver-left"
+                                v-html="getTeamDriversNames(item.Constructor.constructorId, 0)"
+                            />
+                            <a
+                                :href="slugify(getTeamDriversNames(item.Constructor.constructorId, 1))"
+                                class="driver driver-right"
+                                v-html="getTeamDriversNames(item.Constructor.constructorId, 1)"
+                            />
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -248,7 +257,7 @@ export default {
             this.activeTeam = teamId;
             this.activeTeamName = teamName;
         },
-        getTeamDrivers(teamName, position) {
+        getTeamDriversNames(teamName, position) {
             const drivers = this.driversData;
             const teamDrivers = [];
 
@@ -265,6 +274,14 @@ export default {
         },
         toggleRoute() {
             this.$router.push({ path: '/teams' })
+        },
+        slugify(str) {
+            str = str.replace(/^\s+|\s+$/g, '');
+            str = str.toLowerCase();
+            str = str.replace(/[^a-z0-9 -]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-');
+            return str;
         },
     }
 };
