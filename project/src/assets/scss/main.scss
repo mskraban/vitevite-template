@@ -272,6 +272,8 @@ body {
 
         @include media-breakpoint-down(md) {
           margin: 0 auto 60px;
+          padding-left: 2rem;
+          padding-right: 2rem;
         }
 
         h2 {
@@ -418,6 +420,8 @@ body {
 
           @include media-breakpoint-down(md) {
             margin: 0 auto 60px;
+            padding-left: 2rem;
+            padding-right: 2rem;
           }
 
           h1, h2 {
@@ -607,6 +611,8 @@ body {
 
           @include media-breakpoint-down(md) {
             margin: 0 auto 60px;
+            padding-left: 2rem;
+            padding-right: 2rem;
           }
 
           h1, h2 {
