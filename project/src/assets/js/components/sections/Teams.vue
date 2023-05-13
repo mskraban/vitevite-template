@@ -82,7 +82,7 @@
                     <a
                         v-for="item in constructorsData" :key="item"
                         class="team"
-                        :href="slugify(item.Constructor.Name)"
+                        :href="'team/' + slugify(item.Constructor.Name)"
                         @mouseover="setActiveTeam(item.Constructor.constructorId, item.Constructor.Name)"
                         @click="toggleRoute"
                     >
@@ -108,12 +108,12 @@
                         </div>
                         <div class="drivers">
                             <a
-                                :href="slugify(getTeamDriversNames(item.Constructor.constructorId, 0))"
+                                :href="'driver/' + slugify(getTeamDriversNames(item.Constructor.constructorId, 0))"
                                 class="driver driver-left"
                                 v-html="getTeamDriversNames(item.Constructor.constructorId, 0)"
                             />
                             <a
-                                :href="slugify(getTeamDriversNames(item.Constructor.constructorId, 1))"
+                                :href="'driver/' + slugify(getTeamDriversNames(item.Constructor.constructorId, 1))"
                                 class="driver driver-right"
                                 v-html="getTeamDriversNames(item.Constructor.constructorId, 1)"
                             />

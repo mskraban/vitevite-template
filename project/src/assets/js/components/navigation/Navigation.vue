@@ -1,6 +1,6 @@
 <template>
     <nav
-        :class="expanded ? 'nav-expanded' : ''"
+        :class="[expanded ? 'nav-expanded' : '', slimNavbar ? 'slim-navbar' : '']"
     >
         <div class="nav-container">
             <div class="logo">
@@ -45,7 +45,28 @@ export default {
         return {
             images: [img01, img02],
             expanded: false,
+            windowTop: 0,
+            slimNavbar: false,
         };
+    },
+    watch: {
+        windowTop () {
+            if (this.windowTop > 200) {
+                if (!this.slimNavbar) {
+                    this.slimNavbar = true;
+                }
+            } else {
+                if (this.slimNavbar) {
+                    this.slimNavbar = false;
+                }
+            }
+        }
+    },
+    mounted() {
+        window.addEventListener("scroll", this.onScroll)
+    },
+    beforeUnmount() {
+        window.removeEventListener("scroll", this.onScroll)
     },
     methods: {
         toggleExpand() {
@@ -58,6 +79,9 @@ export default {
         },
         scrollToTop() {
             window.scrollTo(0,0);
+        },
+        onScroll(e) {
+            this.windowTop = window.top.scrollY /* or: e.target.documentElement.scrollTop */
         }
     },
 };

@@ -40,6 +40,11 @@ nav {
     }
   }
 
+  &.slim-navbar {
+    background: #1c1d23;
+    border-bottom: 1px solid #bdc8c9;
+  }
+
   .nav-container {
     display: flex;
     justify-content: center;
