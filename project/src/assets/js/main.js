@@ -57,14 +57,8 @@ createApp(App)
     .component('VueFooter', Footer)
     .component('VueStandings', Standings)
     .component('VueCalendar', Calendar)
+    .component('VueTeams', Teams)
     .mount('#app')
-
-
-
-
-
-
-
 
 
 

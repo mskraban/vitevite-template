@@ -171,8 +171,6 @@ export default {
                 date.getDay() + '/' +
                 date.getMonth() + '/' +
                 date.getFullYear();
-            console.log(version)
-            console.log(combinedDate)
             // trigger endpoint after first page load, set version
             // save date instead of version
             // refresh content every day - if there is 1 day diff
@@ -181,7 +179,6 @@ export default {
                 axios.get('http://ergast.com/api/f1/current/driverStandings')
                     .then(response => {
                         // handle success
-                        console.log(response.data);
                         data = response.data;
                         localStorage.setItem('driverStandings', data)
                         localStorage.setItem('driverStandingsVersion', combinedDate)
@@ -208,8 +205,6 @@ export default {
                 date.getDay() + '/' +
                 date.getMonth() + '/' +
                 date.getFullYear();
-            console.log(version)
-            console.log(combinedDate)
             // trigger endpoint after first page load, set version
             // save date instead of version
             // refresh content every day - if there is 1 day diff
@@ -218,7 +213,6 @@ export default {
                 axios.get('http://ergast.com/api/f1/current/constructorStandings')
                     .then(response => {
                         // handle success
-                        console.log(response.data);
                         data = response.data;
                         localStorage.setItem('constuctorStandings', data)
                         localStorage.setItem('constuctorStandingsVersion', combinedDate)
@@ -232,11 +226,8 @@ export default {
                     });
             } else {
                 this.constructorsData = this.parseXml(data);
-                console.log(this.constructorsData);
                 this.constructorsData = this.constructorsData.MRData.StandingsTable.StandingsList.ConstructorStanding;
-                console.log(this.constructorsData);
             }
-          
         },
         parseXml(xmlData) {
             return parser.xml2json(xmlData);

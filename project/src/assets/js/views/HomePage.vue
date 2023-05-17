@@ -23,7 +23,7 @@
                 </div>
             </template>
         </vue-standings>
-      
+
         <vue-calendar/>
 
         <vue-teams

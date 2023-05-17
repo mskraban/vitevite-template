@@ -26,7 +26,8 @@
                         }"
                     >
                         <swiper-slide
-                            v-for="item in calendarData" :key="item"
+                            v-for="item in calendarData"
+                            :key="item.Circuit.circuitId"
                         >
                             <div class="event-card">
                                 <div class="event-img">
@@ -78,6 +79,7 @@ export default {
     },
     methods: {
         getCalendarList() {
+
             let data = localStorage.getItem('calendar')
             const version = localStorage.getItem('calendarVersion')
 
@@ -87,8 +89,6 @@ export default {
                 date.getDay() + '/' +
                 date.getMonth() + '/' +
                 date.getFullYear();
-            console.log(version)
-            console.log(combinedDate)
             // trigger endpoint after first page load, set version
             // save date instead of version
             // refresh content every day - if there is 1 day diff
@@ -97,13 +97,13 @@ export default {
                 axios.get('http://ergast.com/api/f1/current')
                     .then(response => {
                         // handle success
-                        console.log(response.data);
                         data = response.data;
+
+                        this.calendarData = this.parseXml(data);
+                        this.calendarData = this.calendarData.MRData.RaceTable.Race;
+
                         localStorage.setItem('calendar', data)
                         localStorage.setItem('calendarVersion', combinedDate)
-                        this.calendarData = this.parseXml(data);
-                        // eslint-disable-next-line max-len
-                        this.calendarData = this.constructorsData.MRData.RaceTable.Race;
                     })
                     .catch(error => {
                         // handle error
@@ -111,11 +111,8 @@ export default {
                     });
             } else {
                 this.calendarData = this.parseXml(data);
-                console.log(this.calendarData);
                 this.calendarData = this.calendarData.MRData.RaceTable.Race;
-                console.log(this.calendarData);
             }
-
         },
         parseXml(xmlData) {
             return parser.xml2json(xmlData);

@@ -115,7 +115,6 @@ export default {
     },
     mounted() {
         this.getDriverStandings();
-        this.getDriverImage('norris');
     },
     methods: {
         getDriverStandings() {
@@ -128,8 +127,6 @@ export default {
                 date.getDay() + '/' +
                 date.getMonth() + '/' +
                 date.getFullYear();
-            console.log(version)
-            console.log(combinedDate)
             // trigger endpoint after first page load, set version
             // save date instead of version
             // refresh content every day - if there is 1 day diff
@@ -138,7 +135,6 @@ export default {
                 axios.get('http://ergast.com/api/f1/current/driverStandings')
                     .then(response => {
                         // handle success
-                        console.log(response.data);
                         data = response.data;
                         localStorage.setItem('driverStandings', data)
                         localStorage.setItem('driverStandingsVersion', combinedDate)
