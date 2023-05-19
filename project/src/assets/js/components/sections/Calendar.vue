@@ -35,8 +35,10 @@
                                 </div>
                                 <div class="event-country">{{ item.Circuit.Location.Country }}</div>
                                 <div class="event-date">
-                                    <span class="event-weekend-date">18 - 20</span>
-                                    <span class="event-month">mar</span>
+                                    <span class="event-weekend-date"></span>
+                                    <span class="event-month">
+                                        {{ getRaceDay(item.Date) }} {{ getMonthName(item.Date) }}
+                                    </span>
                                 </div>
                             </div>
                         </swiper-slide>
@@ -79,7 +81,6 @@ export default {
     },
     methods: {
         getCalendarList() {
-
             let data = localStorage.getItem('calendar')
             const version = localStorage.getItem('calendarVersion')
 
@@ -130,6 +131,14 @@ export default {
             const matchedCountry = countries.findIndex(element => element.includes(countryName))
 
             return countries[matchedCountry];
+        },
+        getMonthName(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('en-us', { month: 'short' });
+        },
+        getRaceDay(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('en-us', { day: 'numeric' });
         },
     },
 };
