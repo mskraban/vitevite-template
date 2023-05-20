@@ -270,6 +270,8 @@ body {
         font-size: 14px;
         line-height: 43px;
         color: #F3F3F3;
+        z-index: 2;
+        opacity: 0.2;
 
         a {
           text-decoration: none;
@@ -368,8 +370,6 @@ body {
               align-items: center;
             }
           }
-
-
         }
       }
     }
