@@ -33,8 +33,8 @@
                             v-show="isPastDate(item.Date)"
                             :key="item.Circuit.circuitId"
                         >
-                            <router-link
-                                :to="'calendar/' + slugify(item.Circuit.Location.Country)"
+                            <a
+                                :href="'calendar/' + slugify(item.Circuit.Location.Country)"
                                 class="event-card"
                                 @click="scrollToTop"
                             >
@@ -48,10 +48,17 @@
                                         {{ getRaceDay(item.Date) }} {{ getMonthName(item.Date) }}
                                     </span>
                                 </div>
-                            </router-link>
+                            </a>
                         </swiper-slide>
                     </swiper>
-                    <router-link class="btn btn-dark" to="/calendar" @click="scrollToTop">See more</router-link>
+                    <router-link
+                        v-if="embedView"
+                        class="btn btn-dark"
+                        to="/calendar"
+                        @click="scrollToTop"
+                    >
+                        See more
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -157,9 +164,12 @@ export default {
         isPastDate(dateString) {
             const selectedDate = new Date(dateString);
             const now = new Date();
-         
-            return selectedDate > now;
-          
+
+            if (this.embedView) {
+                return selectedDate > now;
+            } else {
+                return true;
+            }
         },
         scrollToTop() {
             window.scrollTo(0,0);
