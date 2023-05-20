@@ -1,5 +1,8 @@
 <template>
-    <div id="calendar">
+    <div
+        id="calendar" 
+        :class="embedView ? 'embed' : 'page-view'"
+    >
         <div class="container">
             <div class="row">
                 <div class="content">
@@ -27,9 +30,14 @@
                     >
                         <swiper-slide
                             v-for="item in calendarData"
+                            v-show="isPastDate(item.Date)"
                             :key="item.Circuit.circuitId"
                         >
-                            <div class="event-card">
+                            <router-link
+                                :to="'calendar/' + slugify(item.Circuit.Location.Country)"
+                                class="event-card"
+                                @click="scrollToTop"
+                            >
                                 <div class="event-img">
                                     <img :src="getCountryFlag(slugify(item.Circuit.Location.Country))" alt="Bahrain">
                                 </div>
@@ -40,10 +48,10 @@
                                         {{ getRaceDay(item.Date) }} {{ getMonthName(item.Date) }}
                                     </span>
                                 </div>
-                            </div>
+                            </router-link>
                         </swiper-slide>
                     </swiper>
-                    <a href="#" class="btn btn-dark">See more</a>
+                    <router-link class="btn btn-dark" to="/calendar" @click="scrollToTop">See more</router-link>
                 </div>
             </div>
         </div>
@@ -64,6 +72,12 @@ export default {
     components: {
         Swiper,
         SwiperSlide,
+    },
+    props: {
+        embedView: {
+            type: Boolean,
+            default: false,
+        }
     },
     setup() {
         return {
@@ -139,6 +153,19 @@ export default {
         getRaceDay(dateString) {
             const date = new Date(dateString);
             return date.toLocaleString('en-us', { day: 'numeric' });
+        },
+        isPastDate(dateString) {
+            const selectedDate = new Date(dateString);
+            const now = new Date();
+         
+            return selectedDate > now;
+          
+        },
+        scrollToTop() {
+            window.scrollTo(0,0);
+        },
+        toggleRoute() {
+            this.$router.push({ path: '/calendar' })
         },
     },
 };

@@ -24,7 +24,9 @@
             </template>
         </vue-standings>
 
-        <vue-calendar/>
+        <vue-calendar
+            :embed-view="true"
+        />
 
         <vue-teams
             :embed-view="true"
