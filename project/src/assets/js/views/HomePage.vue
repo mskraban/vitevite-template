@@ -1,17 +1,7 @@
 <template>
     <div class="home">
-        <section id="hero">
-            <picture>
-                <source srcset="/src/assets/images/01_hero.webp" type="image/webp">
-                <source srcset="/src/assets/images/01_hero.jpg" type="image/jpeg">
-                <img src="/src/assets/images/01_hero.jpg" alt="Haas at Spielberg F1 Qualification 2022" rel="preload">
-            </picture>
-            <div class="content">
-                <h1>Next F1 race in:</h1>
-                <p>14 days 13 hours 54min 43s</p>
-                <a href="#" class="btn btn-red">See more</a>
-            </div>
-        </section>
+        <next-race/>
+
         <vue-standings
             :embed-view="true"
         >
@@ -45,9 +35,10 @@
 import VueStandings from "../components/sections/Standings.vue";
 import VueCalendar from "../components/sections/Calendar.vue";
 import VueTeams from "../components/sections/Teams.vue";
+import NextRace from "../components/sections/NextRace.vue";
 
 export default {
-    components: {VueStandings, VueCalendar, VueTeams}
+    components: {VueStandings, VueCalendar, VueTeams, NextRace}
 }
 
 </script>
