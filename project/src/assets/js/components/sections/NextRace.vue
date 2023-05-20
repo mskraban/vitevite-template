@@ -8,7 +8,7 @@
         <div class="content">
             <h1>Next F1 race in:</h1>
             <vue-countdown v-slot="{ days, hours, minutes, seconds }" :time="getNextRaceDate()">
-                <p>{{ days }} days {{ hours }} hours {{ minutes }}min {{ seconds }}s.</p>
+                <p>{{ days }} days {{ hours }} hours {{ minutes }}min {{ seconds }}s</p>
             </vue-countdown>
             <a href="#" class="btn btn-red">See more</a>
         </div>
@@ -37,10 +37,13 @@ export default {
             nextRace: [],
         };
     },
+    watch: {
+        calendarData: function() {
+            this.filterNextRaces();
+        }
+    },
     mounted() {
         this.getCalendarList();
-        this.filterNextRaces();
-        this.getNextRaceDate();
     },
     methods: {
         getCalendarList() {
@@ -83,19 +86,23 @@ export default {
         },
         filterNextRaces() {
             const now = new Date();
-          
-            this.calendarData.forEach((value, index) => {
-                const selectedDate = new Date(value.Date);
 
-                if (selectedDate > now) {
-                    this.nextRaces.push(value);
-                }
-            });
+            if (this.calendarData) {
+                this.calendarData.forEach((value, index) => {
+                    const selectedDate = new Date(value.Date);
 
-            this.getNextRace();
+                    if (selectedDate > now) {
+                        this.nextRaces.push(value);
+                    }
+                });
+
+                this.getNextRace()
+            }
         },
         getNextRace() {
             this.nextRace = this.nextRaces[0];
+
+            this.getNextRaceDate();
         },
         getNextRaceDate() {
             const now = new Date();
