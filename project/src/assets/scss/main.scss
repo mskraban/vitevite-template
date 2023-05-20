@@ -244,12 +244,132 @@ body {
           font-size: 32px;
           line-height: 43px;
           color: #F3F3F3;
-          margin-bottom: 206px;
+          margin-bottom: 0;
 
           @include media-breakpoint-down(md) {
             font-size: 18px;
             line-height: 24px;
           }
+        }
+
+        .country-title {
+          font-family: "Nulshock", sans-serif;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 32px;
+          line-height: 86px;
+          text-align: center;
+          color: #F3F3F3;
+        }
+      }
+      .img-credit {
+        position: absolute;
+        bottom: 0;
+        right: 22px;
+        font-family: "Exo", sans-serif;
+        font-size: 14px;
+        line-height: 43px;
+        color: #F3F3F3;
+
+        a {
+          text-decoration: none;
+          color: #F3F3F3;
+        }
+      }
+    }
+    #upcoming {
+      background: #1C1D23;
+      padding-top: 80px;
+      padding-bottom: 120px;
+      position: relative;
+      border-bottom: 1px solid #f3f3f3;
+
+      &:before {
+        content: "";
+        position: absolute;
+        height: 167px;
+        width: 100%;
+        top: -167px;
+        background: linear-gradient(0deg, #1c1d23 0%, rgba(28, 29, 35, 0) 100%);
+      }
+
+      .container {
+        max-width: 990px;
+        overflow: visible;
+      }
+
+      .content {
+        h2 {
+          font-family: 'Bruno', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 48px;
+          line-height: 58px;
+          color: #F3F3F3;
+          text-align: left;
+          margin-bottom: 50px;
+        }
+
+        .next {
+          .race {
+            padding-bottom: 21px;
+            margin-top: 21px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #F3F3F3;
+            text-decoration: none;
+            transition: all ease-in-out 0.2s;
+
+            &:hover {
+              transform: scale(1.05);
+            }
+
+            .info {
+              .upper-title {
+                font-family: 'Exo', sans-serif;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 21px;
+                color: #F3F3F3;
+                margin-bottom: 5px;
+              }
+
+              .grand-prix {
+                font-family: 'Bruno', sans-serif;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 32px;
+                line-height: 39px;
+                text-align: center;
+                color: #F3F3F3;
+                margin-bottom: 8px;
+              }
+
+              .circuit {
+                font-family: 'Exo', sans-serif;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 19px;
+                color: #F3F3F3;
+              }
+            }
+
+            .date {
+              font-family: 'Bruno', sans-serif;
+              font-style: normal;
+              font-weight: 400;
+              font-size: 32px;
+              line-height: 39px;
+              text-align: right;
+              color: #F3F3F3;
+              display: flex;
+              align-items: center;
+            }
+          }
+
+
         }
       }
     }
