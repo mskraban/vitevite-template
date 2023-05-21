@@ -364,7 +364,6 @@ body {
       padding-top: 80px;
       padding-bottom: 120px;
       position: relative;
-      border-bottom: 40px solid #f3f3f3;
 
       &:before {
         content: "";
@@ -451,6 +450,100 @@ body {
             }
           }
         }
+      }
+    }
+  }
+
+  #news {
+    background: #F3F3F3;
+    height: 40px;
+    width: 100%;
+    transition: all ease-in-out 0.2s;
+    position: relative;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    $duration: 360s;
+
+    .overlay {
+      font-family: "Bruno", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 42px;
+      text-align: center;
+      height: 100%;
+      width: 210px;
+      position: absolute;
+      z-index: 2;
+      border-width: 0px 2px 2px 2px;
+      border-style: solid;
+      border-color: #FFFFFF;
+      border-radius: 5px;
+      left: calc(50% - 990px / 2 + 105px);
+      transform: translateX(-50%);
+      bottom: -40px;
+
+      a {
+        color: #F3F3F3;
+        background: #1C1D23;
+        text-decoration: none;
+      }
+    }
+
+    .content {
+      display: inline-block;
+      white-space: nowrap;
+      padding-right: 100%;
+      box-sizing: content-box;
+      height: 100%;
+      overflow: hidden;
+
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      -webkit-animation-timing-function: linear;
+      animation-timing-function: linear;
+      -webkit-animation-name: ticker;
+      animation-name: ticker;
+      -webkit-animation-duration: $duration;
+      animation-duration: $duration;
+
+      .news-item {
+        display: inline-block;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        height: 100%;
+
+        a {
+          font-family: "Exo", sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 19px;
+          color: #1C1D23;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          height: 100%;
+          transition: all ease-in-out 0.2s;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    @keyframes ticker {
+      0% {
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+      }
+
+      100% {
+        transform: translate3d(-100%, 0, 0);
       }
     }
   }

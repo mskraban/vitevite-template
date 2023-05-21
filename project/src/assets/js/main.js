@@ -12,6 +12,7 @@ import Footer from './components/navigation/Footer.vue'
 import Standings from './components/sections/Standings.vue'
 import Calendar from './components/sections/Calendar.vue'
 import Teams from './components/sections/Teams.vue'
+import News from './components/sections/News.vue'
 
 // Vue pages
 import Home from './views/HomePage.vue'
@@ -37,6 +38,11 @@ const routes = [
         name: 'Teams',
         component: Teams
     },
+    {
+        path: '/news',
+        name: 'News',
+        component: News
+    },
 ]
 
 const router = createRouter({
@@ -58,6 +64,7 @@ createApp(App)
     .component('VueStandings', Standings)
     .component('VueCalendar', Calendar)
     .component('VueTeams', Teams)
+    .component('VueNews', News)
     .mount('#app')
 
 

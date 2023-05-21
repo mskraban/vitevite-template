@@ -4,6 +4,10 @@
             :embed-view="true"
         />
 
+        <news
+            :embed-view="true"
+        />
+
         <vue-standings
             :embed-view="true"
         >
@@ -38,9 +42,10 @@ import VueStandings from "../components/sections/Standings.vue";
 import VueCalendar from "../components/sections/Calendar.vue";
 import VueTeams from "../components/sections/Teams.vue";
 import NextRace from "../components/sections/NextRace.vue";
+import News from "../components/sections/News.vue";
 
 export default {
-    components: {VueStandings, VueCalendar, VueTeams, NextRace}
+    components: {VueStandings, VueCalendar, VueTeams, NextRace, News}
 }
 
 </script>
