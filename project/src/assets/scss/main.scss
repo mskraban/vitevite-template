@@ -261,6 +261,44 @@ body {
           text-align: center;
           color: #F3F3F3;
         }
+
+        &.re-order {
+          h1 {
+            order: 1;
+          }
+
+          .country-title {
+            order: 2;
+            animation: breathing 3s ease-out infinite normal;
+            -webkit-font-smoothing: antialiased;
+          }
+
+          span {
+            order: 3;
+
+            p {
+              margin-bottom: 1.5rem;
+            }
+          }
+
+          .btn {
+            order: 4;
+          }
+        }
+
+        @keyframes breathing {
+          0% {
+            transform: scale(1);
+          }
+
+          50% {
+            transform: scale(1.2);
+          }
+
+          100% {
+            transform: scale(1);
+          }
+        }
       }
       .img-credit {
         position: absolute;
