@@ -2,9 +2,10 @@
     <div>
         <section id="hero">
             <picture>
-                <source srcset="src/assets/images/countries/2023/backgrounds/monaco.jpg" type="image/jpeg">
-                <img src="src/assets/images/countries/2023/backgrounds/monaco.jpg" alt="Monaco" rel="preload">
+                <source :srcset="'src/assets/images/countries/2023/backgrounds/' + backgroundImage + '.jpg'" type="image/jpeg">
+                <img :src="'src/assets/images/countries/2023/backgrounds/' + backgroundImage + '.jpg'" alt="Monaco" rel="preload">
             </picture>
+
             <div
                 class="content"
                 :class="activeRace[0] ? 're-order' : ''"
@@ -99,6 +100,7 @@ export default {
             nextRace: [],
             activeRace: [],
             activeRaceNextEvents: [],
+            backgroundImage: 'default',
         };
     },
     watch: {
@@ -108,6 +110,7 @@ export default {
     },
     mounted() {
         this.getCalendarList();
+        console.log('bg' + this.backgroundImage);
     },
     methods: {
         getCalendarList() {
@@ -170,6 +173,7 @@ export default {
             this.getNextRaceCountry();
             this.getActiveRace();
             this.getActiveRaceNextEvent();
+            this.setBackgroundImage();
         },
         getNextRaceDate() {
             const now = new Date();
@@ -272,6 +276,13 @@ export default {
             minutes = ("0" + minutes).slice(-2);
 
             return day + ' ' + hours +':'+  minutes;
+        },
+        setBackgroundImage() {
+            if (this.activeRace[0]) {
+                this.backgroundImage = this.activeRace[0].Circuit.circuitId;
+            } else if (this.nextRace) {
+                this.backgroundImage = this.nextRace.Circuit.circuitId
+            }
         },
         slugify(str) {
             str = str.replace(/^\s+|\s+$/g, '');
