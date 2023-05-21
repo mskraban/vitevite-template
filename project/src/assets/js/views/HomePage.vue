@@ -1,6 +1,9 @@
 <template>
     <div class="home">
-        <next-race/>
+        <next-race
+            :embed-view="true"
+            test-date="2023-06-29"
+        />
 
         <vue-standings
             :embed-view="true"

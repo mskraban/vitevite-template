@@ -90,6 +90,10 @@ export default {
         embedView: {
             type: Boolean,
             default: false,
+        },
+        testDate: {
+            type: String,
+            default: null,
         }
     },
     data() {
@@ -152,7 +156,11 @@ export default {
             return parser.xml2json(xmlData);
         },
         filterNextRaces() {
-            const now = new Date();
+            let now = new Date();
+
+            if (this.testDate) {
+                now = new Date(this.testDate);
+            }
 
             if (this.calendarData) {
                 this.calendarData.forEach((value) => {
@@ -176,7 +184,12 @@ export default {
             this.setBackgroundImage();
         },
         getNextRaceDate() {
-            const now = new Date();
+            let now = new Date();
+
+            if (this.testDate) {
+                now = new Date(this.testDate);
+            }
+
             const nextRaceDate = new Date(`${this.nextRace.Date}T${this.nextRace.Time}`);
 
             return nextRaceDate - now;
@@ -185,7 +198,11 @@ export default {
             return this.nextRace.RaceName;
         },
         getActiveRace() {
-            const now = new Date();
+            let now = new Date();
+          
+            if (this.testDate) {
+                now = new Date(this.testDate);
+            }
 
             if (this.calendarData) {
                 this.calendarData.forEach((value) => {
@@ -203,7 +220,11 @@ export default {
             }
         },
         getActiveRaceNextEvent() {
-            const now = new Date();
+            let now = new Date();
+
+            if (this.testDate) {
+                now = new Date(this.testDate);
+            }
             const allEvents = [];
             const upcomingEvents = [];
 
@@ -250,7 +271,11 @@ export default {
             }
         },
         getNextRaceEventTime() {
-            const now = new Date();
+            let now = new Date();
+
+            if (this.testDate) {
+                now = new Date(this.testDate);
+            }
 
             if (this.activeRaceNextEvents[0]) {
                 const nextRaceTime = this.activeRaceNextEvents[0][1];
