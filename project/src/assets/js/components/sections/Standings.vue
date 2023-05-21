@@ -94,6 +94,7 @@ import {Swiper, SwiperSlide} from 'swiper/vue';
 import axios from 'axios';
 import parser from 'xml2json-light'
 import 'swiper/css';
+import VanillaTilt from 'vanilla-tilt';
 
 export default {
     name: 'VueStandings',
@@ -115,6 +116,11 @@ export default {
     },
     mounted() {
         this.getDriverStandings();
+
+        setTimeout(() => {
+            this.addTilt();
+        }, 1000);
+
     },
     methods: {
         getDriverStandings() {
@@ -163,6 +169,14 @@ export default {
         scrollToTop() {
             window.scrollTo(0,0);
         },
+        addTilt() {
+            VanillaTilt.init(document.querySelectorAll(".standings-card"), {
+                max: 15,
+                speed: 400,
+                axis: 'x',
+                scale: 1.2,
+            });
+        }
     }
 };
 </script>

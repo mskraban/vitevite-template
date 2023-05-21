@@ -855,7 +855,7 @@ body {
   #standings {
     &.embed {
       background: #1C1D23;
-      padding-top: 68px;
+      padding-top: 100px;
       padding-bottom: 92px;
       overflow: hidden;
 
@@ -927,10 +927,10 @@ body {
 
           .standings-card {
             width: 243px;
-            transition: transform 0.3s ease;
+            transform: translateZ(-100px);
 
             &:hover {
-              transform: scale(1.1);
+              z-index: 2;
 
               .driver-img {
                 img {
@@ -1088,10 +1088,10 @@ body {
 
           .standings-card {
             width: 243px;
-            transition: transform 0.3s ease;
+            transform: translateZ(-100px);
 
             &:hover {
-              transform: scale(1.1);
+              z-index: 2;
 
               .driver-img {
                 img {
@@ -1153,6 +1153,8 @@ body {
               border-style: solid;
               border-color: #FFFFFF;
               border-radius: 5px;
+
+              background: #1c1d23;
             }
           }
         }
