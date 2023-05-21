@@ -20,7 +20,7 @@
                 <div class="teams">
                     <div
                         v-for="item in constructorsData" :key="item"
-                        class="team team-color mercedes"
+                        class="team team-color"
                         :class="item.Constructor.constructorId"
                         @mouseover="setActiveTeam(item.Constructor.constructorId, item.Constructor.Name)"
                         @click="toggleRoute"
@@ -70,8 +70,6 @@
                     </transition>
                 </div>
             </div>
-
-
         </div>
         <div
             v-else
@@ -87,7 +85,7 @@
                         @click="toggleRoute"
                     >
                         <div
-                            class="car-card team-color"
+                            class="car-card team-gradient"
                             :class="item.Constructor.constructorId"
                         >
                             <div class="team-logo">

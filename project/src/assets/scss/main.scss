@@ -65,6 +65,48 @@ body {
   }
 }
 
+.team-gradient {
+  &.mercedes {
+    background: radial-gradient(circle, rgba(2,210,190,1) 0%, rgba(0,0,0,1) 150%);
+  }
+
+  &.ferrari {
+    background: radial-gradient(circle, rgba(254,0,0,1) 0%, rgba(0,0,0,1) 150%);
+  }
+
+  &.red_bull {
+    background: radial-gradient(circle, rgba(23,25,97,1) 0%, rgba(0,0,0,1) 150%);
+  }
+
+  &.aston_martin {
+    background: radial-gradient(circle, rgba(3,88,80,1) 0%, rgba(0,0,0,1) 150%);
+  }
+
+  &.mclaren {
+    background: radial-gradient(circle, rgba(255,136,1,1) 0%, rgba(0,0,0,1) 150%);
+  }
+
+  &.haas {
+    background: radial-gradient(circle, rgba(238,26,59,1) 0%, rgba(0,0,0,1) 150%);
+  }
+
+  &.alfa {
+    background: radial-gradient(circle, rgba(155,0,0,1) 0%, rgba(0,0,0,1) 150%);
+  }
+
+  &.alpine {
+    background: radial-gradient(circle, rgba(14,28,44,1) 0%, rgba(0,0,0,1) 150%);
+  }
+
+  &.alphatauri {
+    background: radial-gradient(circle, rgba(38,40,81,1) 0%, rgba(0,0,0,1) 150%);
+  }
+
+  &.williams {
+    background: radial-gradient(circle, rgba(2,169,236,1) 0%, rgba(0,0,0,1) 150%);
+  }
+}
+
 /* we will explain what these classes do next! */
 .fade-enter-active,
 .fade-leave-active {
@@ -322,7 +364,7 @@ body {
       padding-top: 80px;
       padding-bottom: 120px;
       position: relative;
-      border-bottom: 1px solid #f3f3f3;
+      border-bottom: 40px solid #f3f3f3;
 
       &:before {
         content: "";
@@ -815,47 +857,6 @@ body {
               img {
                 transition: filter 0.3s ease-in-out;
               }
-
-              &.mercedes {
-                background: #02D2BE;
-              }
-
-              &.ferrari {
-                background: #FE0000;
-              }
-
-              &.red_bull {
-                background: #171961;
-              }
-
-              &.aston_martin {
-                background: #035850;
-              }
-
-              &.mclaren {
-                background: #FF8801;
-              }
-
-              &.haas {
-                background: #EE1A3B;
-              }
-
-              &.alfa {
-                background: #9B0000;
-              }
-
-              &.alpine {
-                background: #0E1C2C;
-              }
-
-              &.alphatauri {
-                background: #262851;
-              }
-
-              &.williams {
-                background: #02A9EC;
-              }
-
             }
 
             .driver-name {
@@ -1016,46 +1017,6 @@ body {
 
               img {
                 transition: filter 0.3s ease-in-out;
-              }
-
-              &.mercedes {
-                background: #02D2BE;
-              }
-
-              &.ferrari {
-                background: #FE0000;
-              }
-
-              &.red_bull {
-                background: #171961;
-              }
-
-              &.aston_martin {
-                background: #035850;
-              }
-
-              &.mclaren {
-                background: #FF8801;
-              }
-
-              &.haas {
-                background: #EE1A3B;
-              }
-
-              &.alfa {
-                background: #9B0000;
-              }
-
-              &.alpine {
-                background: #0E1C2C;
-              }
-
-              &.alphatauri {
-                background: #262851;
-              }
-
-              &.williams {
-                background: #02A9EC;
               }
             }
 
@@ -1239,6 +1200,7 @@ body {
               a {
                 text-decoration: none;
                 text-underline: none;
+                color: #1C1D23;
               }
             }
           }

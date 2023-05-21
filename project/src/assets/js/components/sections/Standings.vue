@@ -20,7 +20,7 @@
                 <div v-if="$grid.lg && !embedView" class="wrapper">
                     <div v-for="item in driversData" :key="item" class="standings-card">
                         <div
-                            class="driver-img"
+                            class="driver-img team-gradient"
                             :class="item.Constructor.constructorId"
                         >
                             <img
@@ -55,7 +55,7 @@
                         v-for="item in driversData" :key="item">
                         <div class="standings-card">
                             <div
-                                class="driver-img"
+                                class="driver-img team-gradient"
                                 :class="item.Constructor.constructorId"
                             >
                                 <img
