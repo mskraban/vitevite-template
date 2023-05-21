@@ -2,7 +2,6 @@
     <div class="home">
         <next-race
             :embed-view="true"
-            test-date="2023-06-29"
         />
 
         <vue-standings
