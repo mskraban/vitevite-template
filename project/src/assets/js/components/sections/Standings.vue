@@ -18,7 +18,7 @@
                 :class="embedView ? 'flex-layout' : 'grid-layout'"
             >
                 <div v-if="$grid.lg && !embedView" class="wrapper">
-                    <div v-for="item in driversData" :key="item" class="standings-card">
+                    <div v-for="item in driversData" :key="item" class="standings-card tilt">
                         <div
                             class="driver-img team-gradient"
                             :class="item.Constructor.constructorId"
@@ -170,12 +170,14 @@ export default {
             window.scrollTo(0,0);
         },
         addTilt() {
-            VanillaTilt.init(document.querySelectorAll(".standings-card"), {
-                max: 15,
-                speed: 400,
-                axis: 'x',
-                scale: 1.2,
-            });
+            if (this.$grid.lg) {
+                VanillaTilt.init(document.querySelectorAll(".tilt"), {
+                    max: 15,
+                    speed: 400,
+                    axis: 'x',
+                    scale: 1.2,
+                });
+            }
         }
     }
 };

@@ -1,11 +1,23 @@
 <template>
     <div>
         <section id="hero">
-            <picture>
-                <source :srcset="'src/assets/images/countries/2023/backgrounds/' + backgroundImage + '.jpg'" type="image/jpeg">
-                <img :src="'src/assets/images/countries/2023/backgrounds/' + backgroundImage + '.jpg'" alt="Monaco" rel="preload">
-            </picture>
-
+            <transition
+                name="fade"
+                mode="out-in"
+            >
+                <picture :key="backgroundImage">
+                    <source 
+                        :srcset="'src/assets/images/countries/2023/backgrounds/' + backgroundImage + '.jpg'" 
+                        type="image/jpeg"
+                    >
+                    <img 
+                        :src="'src/assets/images/countries/2023/backgrounds/' + backgroundImage + '.jpg'" 
+                        alt="Monaco" 
+                        rel="preload"
+                    >
+                </picture>
+            </transition>
+          
             <div
                 class="content"
                 :class="activeRace[0] ? 're-order' : ''"
