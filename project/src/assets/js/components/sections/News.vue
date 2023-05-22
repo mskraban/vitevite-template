@@ -3,19 +3,43 @@
         id="news"
         :class="embedView ? 'embed' : 'page-view'"
     >
-        <span class="overlay">
-            <router-link
-                v-if="embedView"
-                to="/news"
-                @click="scrollToTop"
-            >
-                Latest news
-            </router-link>
-        </span>
-        <div class="content">
-            <div v-for="article in newsData" :key="article.link" class="news-item">
-                <a :href="article.link" target="_blank" v-html="replaceChars(article.title)"></a>
+        <div v-if="embedView">
+            <span class="overlay">
+                <router-link
+                    v-if="embedView"
+                    to="/news"
+                    @click="scrollToTop"
+                >
+                    Latest news
+                </router-link>
+            </span>
+            <div class="content">
+                <div v-for="article in newsData" :key="article.link" class="news-item">
+                    <a :href="article.link" target="_blank" v-html="replaceChars(article.title)"></a>
+                </div>
             </div>
+        </div>
+        <div v-else class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="content">
+                        <h1>News</h1>
+                        <p>F1 news.</p>
+                    </div>
+                </div>
+            </div>
+            <article v-for="article in newsData" :key="article.link" class="row article">
+                <div class="col-12 col-lg-3">
+                    image
+                </div>
+                <div class="col-12 col-lg-9">
+                    <a :href="article.link" target="_blank">
+                        <div class="news-published">{{ article.pubDate }}</div>
+                        <div class="news-title" v-html="replaceChars(article.title)"/>
+                        <div class="news-description" v-html="replaceChars(article.description)"/>
+                    </a>
+                </div>
+            </article>
         </div>
     </div>
 </template>

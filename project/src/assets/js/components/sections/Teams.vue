@@ -174,7 +174,7 @@ export default {
             // refresh content every day - if there is 1 day diff
 
             if (!version || version !== combinedDate) {
-                axios.get('http://ergast.com/api/f1/current/driverStandings')
+                axios.get('https://ergast.com/api/f1/current/driverStandings')
                     .then(response => {
                         // handle success
                         data = response.data;
@@ -208,7 +208,7 @@ export default {
             // refresh content every day - if there is 1 day diff
 
             if (!version || version !== combinedDate) {
-                axios.get('http://ergast.com/api/f1/current/constructorStandings')
+                axios.get('https://ergast.com/api/f1/current/constructorStandings')
                     .then(response => {
                         // handle success
                         data = response.data;
