@@ -3,7 +3,7 @@
         id="news"
         :class="embedView ? 'embed' : 'page-view'"
     >
-        <div v-if="embedView">
+        <div v-if="embedView" class="embed-wrap">
             <span class="overlay">
                 <router-link
                     v-if="embedView"
@@ -28,9 +28,11 @@
                     </div>
                 </div>
             </div>
-            <article v-for="article in newsData" :key="article.link" class="row article">
-                <div class="col-12 col-lg-3">
-                    image
+            <article v-for="(article, index) in newsData" :key="article.link" class="row article">
+                <div class="col-12 col-lg-3 img-wrap">
+                    <div class="img-wrap">
+                        <img :src="newsImages[index]" :alt="article.title" class="thumb-img" loading="lazy">
+                    </div>
                 </div>
                 <div class="col-12 col-lg-9">
                     <a :href="article.link" target="_blank">
@@ -48,6 +50,7 @@
 <script>
 import axios from 'axios';
 import parser from 'xml2json-light'
+import ogs from 'open-graph-scraper'
 
 export default {
     name: 'VueNews',
@@ -60,10 +63,12 @@ export default {
     data() {
         return {
             newsData: null,
+            newsImages: [],
         };
     },
     mounted() {
         this.getNews();
+        this.newsData.forEach(element => this.getArticleImage(element.link));
     },
     methods: {
         getNews() {
@@ -84,7 +89,6 @@ export default {
                         data = response.data;
                         localStorage.setItem('news', data)
                         localStorage.setItem('newsVersion', combinedDate)
-
                         this.newsData = this.parseXml(data);
                         this.newsData = this.newsData.rss.channel.item;
                     })
@@ -112,6 +116,20 @@ export default {
         scrollToTop() {
             window.scrollTo(0,0);
         },
+        getArticleImage(url) {
+            let img = null;
+            const options = {
+                url: url,
+            };
+            ogs(options)
+                .then((data) => {
+                    const {result} = data;
+                    img = result.ogImage[0].url;
+                    this.newsImages.push(img);
+
+                });
+            return img;
+        }
     }
 };
 </script>
