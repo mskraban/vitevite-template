@@ -466,6 +466,10 @@ body {
         transform: scale(1.1);
       }
 
+      .embed-wrap {
+        height: 100%;
+      }
+
       $duration: 360s;
 
       .overlay {
@@ -602,6 +606,26 @@ body {
 
         &.article {
           margin-bottom: 2rem;
+
+          &:hover {
+            .thumb-img {
+              transform: scale(1.2);
+            }
+
+            .news-title {
+              text-decoration: underline;
+            }
+          }
+
+          .img-wrap {
+            overflow: hidden;
+          }
+
+          .thumb-img {
+            max-width: 100%;
+            width: 100%;
+            transition: all ease-in-out 0.2s;
+          }
 
           a {
             text-decoration: none;
