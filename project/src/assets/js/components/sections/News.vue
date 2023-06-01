@@ -28,20 +28,29 @@
                     </div>
                 </div>
             </div>
-            <article v-for="(article, index) in newsData" :key="article.link" class="row article">
-                <div class="col-12 col-lg-3 img-wrap">
-                    <div class="img-wrap">
-                        <img :src="newsImages[index]" :alt="article.title" class="thumb-img" loading="lazy">
+            <TransitionGroup name="list">
+                <article v-for="article in newsData" v-show="!!article.image" :key="article.image" class="row article">
+                    <div class="col-12 col-lg-3 img-wrap">
+                        <div class="img-wrap">
+                            <a :href="article.link" target="_blank">
+                                <img
+                                    :src="article.image"
+                                    :alt="article.title"
+                                    class="thumb-img"
+                                    loading="lazy"
+                                >
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-9">
-                    <a :href="article.link" target="_blank">
-                        <div class="news-published">{{ article.pubDate }}</div>
-                        <div class="news-title" v-html="replaceChars(article.title)"/>
-                        <div class="news-description" v-html="replaceChars(article.description)"/>
-                    </a>
-                </div>
-            </article>
+                    <div class="col-12 col-lg-9">
+                        <a :href="article.link" target="_blank">
+                            <div class="news-published" v-html="formatDate(article.pubDate)"/>
+                            <div class="news-title" v-html="replaceChars(article.title)"/>
+                            <div class="news-description" v-html="replaceChars(article.description)"/>
+                        </a>
+                    </div>
+                </article>
+            </TransitionGroup>
         </div>
     </div>
 </template>
@@ -63,12 +72,11 @@ export default {
     data() {
         return {
             newsData: null,
-            newsImages: [],
         };
     },
     mounted() {
         this.getNews();
-        this.newsData.forEach(element => this.getArticleImage(element.link));
+        this.newsData.forEach((element, index) => this.populateArticleImg(element.link, index));
     },
     methods: {
         getNews() {
@@ -116,7 +124,7 @@ export default {
         scrollToTop() {
             window.scrollTo(0,0);
         },
-        getArticleImage(url) {
+        populateArticleImg(url, index) {
             let img = null;
             const options = {
                 url: url,
@@ -125,11 +133,19 @@ export default {
                 .then((data) => {
                     const {result} = data;
                     img = result.ogImage[0].url;
-                    this.newsImages.push(img);
+                    
+                    const obj1 = this.newsData[index];
+                    const obj2 = {...obj1, image: img};
 
+                    return this.newsData[index] = obj2;
                 });
-            return img;
-        }
+        },
+        formatDate(dateString) {
+            const selectedDate = new Date(dateString);
+            // eslint-disable-next-line max-len
+            return selectedDate.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}
+            )
+        },
     }
 };
 </script>
