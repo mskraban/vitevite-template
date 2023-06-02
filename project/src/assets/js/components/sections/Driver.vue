@@ -7,9 +7,8 @@
         <div class="row">
             <slot name="embedContent" />
             <div v-if="!embedView" class="content">
-                <h1>Standings</h1>
-                <p>The F1 top driver standings rank the most successful drivers in the Formula One World Championship
-                    based on points earned in each race.</p>
+                <h1>Driver</h1>
+                <p>Driver info</p>
             </div>
         </div>
         <div class="row">
@@ -18,10 +17,10 @@
                 :class="embedView ? 'flex-layout' : 'grid-layout'"
             >
                 <div v-if="$grid.lg && !embedView" class="wrapper">
-                    <router-link
-                        v-for="item in driversData"
+                    <router-link 
+                        v-for="item in driversData" 
                         :key="item" 
-                        :to="'/driver/' + slugify(item.Driver.GivenName + '-' + item.Driver.FamilyName)" 
+                        :to="'/driver/' + item.Driver.driverId" 
                         class="standings-card tilt"
                     >
                         <div
@@ -58,9 +57,7 @@
                 >
                     <swiper-slide
                         v-for="item in driversData" :key="item">
-                        <router-link 
-                            :to="'/driver/' + slugify(item.Driver.GivenName + '-' + item.Driver.FamilyName)" 
-                            class="standings-card">
+                        <div class="standings-card">
                             <div
                                 class="driver-img team-gradient"
                                 :class="item.Constructor.constructorId"
@@ -77,7 +74,7 @@
                                 <span class="pts-count">{{ item.points }}</span>
                                 <span class="pts-copy">pts</span>
                             </div>
-                        </router-link>
+                        </div>
                     </swiper-slide>
                 </swiper>
 
@@ -104,7 +101,7 @@ import 'swiper/css';
 import VanillaTilt from 'vanilla-tilt';
 
 export default {
-    name: 'VueStandings',
+    name: 'VueDriver',
     components: {
         Swiper,
         SwiperSlide,
@@ -185,15 +182,7 @@ export default {
                     scale: 1.2,
                 });
             }
-        },
-        slugify(str) {
-            str = str.replace(/^\s+|\s+$/g, '');
-            str = str.toLowerCase();
-            str = str.replace(/[^a-z0-9 -]/g, '')
-                .replace(/\s+/g, '-')
-                .replace(/-+/g, '-');
-            return str;
-        },
+        }
     }
 };
 </script>

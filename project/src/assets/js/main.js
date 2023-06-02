@@ -13,6 +13,7 @@ import Standings from './components/sections/Standings.vue'
 import Calendar from './components/sections/Calendar.vue'
 import Teams from './components/sections/Teams.vue'
 import News from './components/sections/News.vue'
+import Driver from './components/sections/Driver.vue'
 
 // Vue pages
 import Home from './views/HomePage.vue'
@@ -43,6 +44,11 @@ const routes = [
         name: 'News',
         component: News
     },
+    {
+        path: '/driver/:slug',
+        name: 'Driver',
+        component: Driver
+    },
 ]
 
 const router = createRouter({
@@ -65,6 +71,7 @@ createApp(App)
     .component('VueCalendar', Calendar)
     .component('VueTeams', Teams)
     .component('VueNews', News)
+    .component('VueDriver', Driver)
     .mount('#app')
 
 
