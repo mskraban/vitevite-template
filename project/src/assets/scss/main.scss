@@ -25,6 +25,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #1C1D23;
+  overflow: hidden;
 }
 
 //Team colors
@@ -588,6 +589,8 @@ body {
 
         @include media-breakpoint-down(md) {
           left: 50%;
+          font-size: 18px;
+          line-height: 200%;
         }
 
         a {
@@ -795,6 +798,10 @@ body {
       padding-bottom: 45px;
       overflow: hidden;
 
+      @include media-breakpoint-down(md) {
+        padding-bottom: 80px;
+      }
+
       .container {
         max-width: 990px;
       }
@@ -821,6 +828,8 @@ body {
             text-align: left;
 
             @include media-breakpoint-down(md) {
+              font-size: 36px;
+              line-height: 150%;
               text-align: center;
               margin-top: 0;
             }
@@ -837,6 +846,8 @@ body {
             text-align: left;
 
             @include media-breakpoint-down(md) {
+              font-size: 16px;
+              line-height: 150%;
               text-align: center;
             }
           }
@@ -1613,6 +1624,7 @@ body {
             @include media-breakpoint-down(md) {
               font-size: 36px;
               line-height: 150%;
+              margin-top: 0;
             }
           }
 
@@ -1626,6 +1638,8 @@ body {
             margin-bottom: 0;
 
             @include media-breakpoint-down(md) {
+              font-size: 16px;
+              line-height: 150%;
               text-align: left;
             }
           }
@@ -1686,6 +1700,11 @@ body {
               align-items: center;
               color: #F3F3F3;
               text-transform: uppercase;
+
+              @include media-breakpoint-down(md) {
+                font-size: 16px;
+                line-height: 150%;
+              }
             }
 
             .more {
