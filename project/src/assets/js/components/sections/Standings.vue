@@ -44,7 +44,7 @@
                         </div>
                     </router-link>
                 </div>
-                <div class="swiper-container" v-else>
+                <div v-else class="swiper-container">
                     <swiper
                         :modules="modules"
                         :centered-slides="true"
@@ -54,6 +54,10 @@
                         :breakpoints="{
                             0: {
                                 slidesPerView: 'auto',
+                                pagination: {
+                                    el: '.swiper-pagination-custom',
+                                    dynamicBullets: true,
+                                },
                             },
                             768: {
                                 slidesPerView: 3,

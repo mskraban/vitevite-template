@@ -1265,6 +1265,78 @@ body {
           }
         }
 
+        .swiper-container {
+          position: relative;
+          max-width: 778px;
+          margin: 0 3rem;
+          padding-bottom: 3rem;
+
+          @include media-breakpoint-down(md) {
+            margin: 0;
+          }
+
+          .swiper-next {
+            right: $swiper-navigation-sides-offset;
+            &:before {
+              content: "next";
+            }
+          }
+
+          .swiper-prev {
+            left: $swiper-navigation-sides-offset;
+            &:before {
+              content: "prev";
+            }
+          }
+
+          .swiper-btn {
+            top: 117px;
+            height: 44px;
+            width: 22px;
+            position: absolute;
+            color: #F3F3F3;
+            transition: all ease-out 0.2s;
+            cursor: pointer;
+
+            &.swiper-button-disabled {
+              opacity: 0.3 !important;
+            }
+
+            &:hover {
+              transform: scale(1.2);
+              bottom: -4px;
+            }
+
+            &:before {
+              font-family: swiper-icons, sans-serif;
+              font-size: 1.875rem;
+              text-transform: none !important;
+              letter-spacing: 0;
+              font-variant: initial;
+              line-height: 1;
+            }
+          }
+
+          .swiper-button-prev,
+          .swiper-button-next {
+            display: none;
+          }
+        }
+
+        .swiper-pagination-custom {
+          position: absolute;
+          bottom: 0;
+
+          .swiper-pagination-bullet-active {
+            background: #F3F3F3 !important;
+          }
+
+          .swiper-pagination-bullet {
+            background: rgba(243, 243, 243, 0.4);
+            opacity: 1;
+          }
+        }
+
         .standings {
           &.flex-layout {
             display: flex;
@@ -1295,6 +1367,11 @@ body {
               padding-left: 2rem;
               padding-right: 2rem;
               margin: 0 auto;
+            }
+
+            @include media-breakpoint-down(md) {
+              padding: 0;
+              margin: 0;
             }
 
             .swiper-slide {
