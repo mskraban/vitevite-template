@@ -44,43 +44,62 @@
                         </div>
                     </router-link>
                 </div>
-                <swiper
-                    v-else
-                    slides-per-view="auto"
-                    :centered-slides="true"
-                    :space-between="24"
-                    :breakpoints="{
-                        768: {
-                            slidesPerView: 3,
-                            centeredSlides: false,
-                        },
-                    }"
-                >
-                    <swiper-slide
-                        v-for="item in driversData" :key="item">
-                        <router-link 
-                            :to="'/driver/' + slugify(item.Driver.GivenName + '-' + item.Driver.FamilyName)" 
-                            class="standings-card">
-                            <div
-                                class="driver-img team-gradient"
-                                :class="item.Constructor.constructorId"
-                            >
-                                <img
-                                    :src="getDriverImage(item.Driver.driverId)"
-                                    :alt="item.Driver.GivenName + ' ' + item.Driver.FamilyName">
-                            </div>
-                            <div class="driver-name">
-                                {{ item.Driver.GivenName }}
-                                {{ item.Driver.FamilyName }}
-                            </div>
-                            <div class="driver-pts">
-                                <span class="pts-count">{{ item.points }}</span>
-                                <span class="pts-copy">pts</span>
-                            </div>
-                        </router-link>
-                    </swiper-slide>
-                </swiper>
-
+                <div class="swiper-container" v-else>
+                    <swiper
+                        :modules="modules"
+                        :centered-slides="true"
+                        :space-between="24"
+                        :navigation="true"
+                        :pagination="true"
+                        :breakpoints="{
+                            0: {
+                                slidesPerView: 'auto',
+                            },
+                            768: {
+                                slidesPerView: 3,
+                                centeredSlides: false,
+                                navigation: {
+                                    nextEl: '.swiper-next',
+                                    prevEl: '.swiper-prev',
+                                },
+                                pagination: {
+                                    el: '.swiper-pagination-custom',
+                                    dynamicBullets: true,
+                                },
+                                observer: true,
+                                observeParents: true,
+                                parallax:true,
+                            },
+                        }"
+                    >
+                        <swiper-slide
+                            v-for="item in driversData" :key="item">
+                            <router-link
+                                :to="'/driver/' + slugify(item.Driver.GivenName + '-' + item.Driver.FamilyName)"
+                                class="standings-card">
+                                <div
+                                    class="driver-img team-gradient"
+                                    :class="item.Constructor.constructorId"
+                                >
+                                    <img
+                                        :src="getDriverImage(item.Driver.driverId)"
+                                        :alt="item.Driver.GivenName + ' ' + item.Driver.FamilyName">
+                                </div>
+                                <div class="driver-name">
+                                    {{ item.Driver.GivenName }}
+                                    {{ item.Driver.FamilyName }}
+                                </div>
+                                <div class="driver-pts">
+                                    <span class="pts-count">{{ item.points }}</span>
+                                    <span class="pts-copy">pts</span>
+                                </div>
+                            </router-link>
+                        </swiper-slide>
+                    </swiper>
+                    <div class="swiper-next swiper-btn"></div>
+                    <div class="swiper-prev swiper-btn"></div>
+                    <div class="swiper-pagination-custom"></div>
+                </div>
                 <router-link 
                     v-if="embedView" 
                     to="/standings" 
@@ -97,10 +116,13 @@
 
 <script>
 const driverImages = import.meta.glob("/src/assets/images/drivers/2023/*")
+import { Navigation, Pagination } from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import axios from 'axios';
 import parser from 'xml2json-light'
 import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import VanillaTilt from 'vanilla-tilt';
 
 export default {
@@ -119,6 +141,7 @@ export default {
         return {
             expanded: false,
             driversData: null,
+            modules: [Navigation, Pagination],
         };
     },
     beforeMount() {
