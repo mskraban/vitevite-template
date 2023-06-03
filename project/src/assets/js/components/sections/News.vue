@@ -32,7 +32,7 @@
                 <article v-for="article in newsData" v-show="!!article.image" :key="article.image" class="row article">
                     <div class="col-12 col-lg-3 img-wrap">
                         <div class="img-wrap">
-                            <a :href="article.link" target="_blank">
+                            <a :href="article.link" class="img-link" target="_blank">
                                 <img
                                     :src="article.image"
                                     :alt="article.title"
