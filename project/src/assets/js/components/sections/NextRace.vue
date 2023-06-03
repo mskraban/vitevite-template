@@ -35,11 +35,11 @@
                 <div v-if="activeRaceNextEvents[0]" class="country-title"> {{ activeRaceNextEvents[0][0] }} </div>
                 <div v-else class="country-title">{{ getNextRaceCountry() }}</div>
 
-                <a href="#" class="btn btn-red">Upcoming events</a>
+                <a href="#upcoming" class="btn btn-red">Upcoming events</a>
+                <a href="#upcoming" class="chevron-down float">
+                    <span/>
+                </a>
             </div>
-            <span class="img-credit">Monaco, from
-                <a href="https://unsplash.com/photos/1CkSNmbT7J0" target="_blank">Unsplash.com</a>
-            </span>
         </section>
         <section id="upcoming">
             <div class="container">

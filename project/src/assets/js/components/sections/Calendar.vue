@@ -6,7 +6,10 @@
         <div class="container">
             <div class="row">
                 <div class="content">
-                    <h2>Calendar</h2>
+                    <component :is="embedView ? 'h3' : 'h1'" >
+                        Calendar
+                    </component>
+           
                     <p>The F1 calendar is a schedule of all the races that take place in the 
                         Formula One World Championship season.</p>
                 </div>
