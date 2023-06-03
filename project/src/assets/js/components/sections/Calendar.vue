@@ -97,7 +97,7 @@ export default {
             calendarData: null,
         };
     },
-    mounted() {
+    beforeMount() {
         this.getCalendarList();
     },
     methods: {

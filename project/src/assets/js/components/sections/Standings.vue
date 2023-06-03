@@ -121,7 +121,7 @@ export default {
             driversData: null,
         };
     },
-    mounted() {
+    beforeMount() {
         this.getDriverStandings();
 
         setTimeout(() => {

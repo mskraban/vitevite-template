@@ -74,9 +74,13 @@ export default {
             newsData: null,
         };
     },
-    mounted() {
+    watch: {
+        newsData: function() {
+            this.newsData.forEach((element, index) => this.populateArticleImg(element.link, index));
+        }
+    },
+    beforeMount() {
         this.getNews();
-        this.newsData.forEach((element, index) => this.populateArticleImg(element.link, index));
     },
     methods: {
         getNews() {

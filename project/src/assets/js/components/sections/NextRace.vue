@@ -124,7 +124,7 @@ export default {
             this.filterNextRaces();
         }
     },
-    mounted() {
+    beforeMount() {
         this.getCalendarList();
         console.log('bg' + this.backgroundImage);
     },
@@ -154,6 +154,7 @@ export default {
 
                         localStorage.setItem('calendar', data)
                         localStorage.setItem('calendarVersion', combinedDate)
+                        console.log('here 1');
                     })
                     .catch(error => {
                         // handle error
@@ -162,6 +163,7 @@ export default {
             } else {
                 this.calendarData = this.parseXml(data);
                 this.calendarData = this.calendarData.MRData.RaceTable.Race;
+                console.log('here 2');
             }
         },
         parseXml(xmlData) {

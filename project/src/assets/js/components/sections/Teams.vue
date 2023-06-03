@@ -147,7 +147,7 @@ export default {
             activeTeamName: null,
         };
     },
-    mounted() {
+    beforeMount() {
         this.getConstuctorStandings();
         this.getDriverStandings();
 
