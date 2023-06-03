@@ -17,9 +17,16 @@
             <div class="row">
                 <div class="events">
                     <swiper
-                        slides-per-view="auto"
                         :centered-slides="true"
                         :breakpoints="{
+                            0: {
+                                slidesPerView: 'auto',
+                                spaceBetween: 24,
+                                pagination: {
+                                    el: '.swiper-pagination-custom',
+                                    dynamicBullets: true,
+                                },
+                            },
                             768: {
                                 slidesPerView: 4,
                                 centeredSlides: false,

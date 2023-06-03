@@ -854,6 +854,10 @@ body {
         }
 
         .events {
+          @include media-breakpoint-down(md) {
+            padding: 0;
+          }
+
           .swiper-grid {
             max-height: 470px;
           }
@@ -871,6 +875,10 @@ body {
             transition: background-color 0.3s ease;
             justify-content: center;
             text-decoration: none;
+
+            @include media-breakpoint-down(md) {
+              width: 180px;
+            }
 
             &:hover {
               background: #2e303a;
@@ -953,7 +961,6 @@ body {
         }
       }
     }
-
     &.page-view {
       background: #1C1D23;
       padding-top: 150px;
@@ -1100,6 +1107,11 @@ body {
           color: #F3F3F3;
           margin-top: calc(40px - 18px);
         }
+      }
+    }
+    .swiper-slide {
+      @include media-breakpoint-down(md) {
+        width: 180px;
       }
     }
   }
