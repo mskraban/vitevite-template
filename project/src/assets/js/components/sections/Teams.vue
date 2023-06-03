@@ -125,8 +125,6 @@
 
 
 <script>
-const teamImages = import.meta.glob("/src/assets/images/teams/2023/*")
-const teamCars = import.meta.glob("/src/assets/images/cars/2023/*")
 import axios from 'axios';
 import parser from 'xml2json-light'
 
@@ -230,18 +228,6 @@ export default {
         parseXml(xmlData) {
             return parser.xml2json(xmlData);
         },
-        getTeamImage(teamName) {
-            const teams = Object.keys(teamImages);
-            const matchedTeam = teams.findIndex(element => element.includes(teamName))
-
-            return teams[matchedTeam];
-        },
-        getTeamCarImage(teamName) {
-            const teams = Object.keys(teamCars);
-            const matchedTeam = teams.findIndex(element => element.includes(teamName))
-
-            return teams[matchedTeam];
-        },
         setActiveTeam(teamId, teamName) {
             this.activeTeam = teamId;
             this.activeTeamName = teamName;
@@ -271,6 +257,12 @@ export default {
                 .replace(/\s+/g, '-')
                 .replace(/-+/g, '-');
             return str;
+        },
+        getTeamImage(name) {
+            return new URL(`/src/assets/images/teams/2023/${name}.svg`, import.meta.url).href
+        },
+        getTeamCarImage(name) {
+            return new URL(`/src/assets/images/cars/2023/${name}.png`, import.meta.url).href
         },
     }
 };

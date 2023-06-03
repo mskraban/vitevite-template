@@ -795,7 +795,7 @@ body {
     &.embed {
       background: #F3F3F3;
       padding-top: 80px;
-      padding-bottom: 45px;
+      padding-bottom: 80px;
       overflow: hidden;
 
       @include media-breakpoint-down(md) {
@@ -1115,6 +1115,12 @@ body {
           color: #F3F3F3;
           margin-top: calc(40px - 18px);
         }
+      }
+    }
+
+    .swiper-wrapper {
+      @include media-breakpoint-up(md) {
+        flex-direction: initial;
       }
     }
 

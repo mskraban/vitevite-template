@@ -119,7 +119,6 @@
 
 
 <script>
-const driverImages = import.meta.glob("/src/assets/images/drivers/2023/*")
 import { Navigation, Pagination } from 'swiper';
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import axios from 'axios';
@@ -194,12 +193,6 @@ export default {
         parseXml(xmlData) {
             return parser.xml2json(xmlData);
         },
-        getDriverImage(driverName) {
-            const drivers = Object.keys(driverImages);
-            const matchedDriver = drivers.findIndex(element => element.includes(driverName))
-
-            return drivers[matchedDriver];
-        },
         scrollToTop() {
             window.scrollTo(0,0);
         },
@@ -220,6 +213,9 @@ export default {
                 .replace(/\s+/g, '-')
                 .replace(/-+/g, '-');
             return str;
+        },
+        getDriverImage(name) {
+            return new URL(`/src/assets/images/drivers/2023/${name}.webp`, import.meta.url).href
         },
     }
 };

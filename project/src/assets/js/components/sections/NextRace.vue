@@ -6,12 +6,12 @@
                 mode="out-in"
             >
                 <picture :key="backgroundImage">
-                    <source 
-                        :srcset="'src/assets/images/countries/2023/backgrounds/' + backgroundImage + '.jpg'" 
+                    <source
+                        :srcset="getImageUrl(backgroundImage)"
                         type="image/jpeg"
                     >
                     <img 
-                        :src="'src/assets/images/countries/2023/backgrounds/' + backgroundImage + '.jpg'" 
+                        :src="getImageUrl(backgroundImage)"
                         alt="Monaco" 
                         rel="preload"
                     >
@@ -335,7 +335,10 @@ export default {
             return first.getFullYear() === second.getFullYear() &&
                 first.getMonth() === second.getMonth() &&
                 first.getDate() === second.getDate();
-        }
+        },
+        getImageUrl(name) {
+            return new URL(`/src/assets/images/countries/2023/backgrounds/${name}.jpg`, import.meta.url).href
+        },
     },
 };
 </script>

@@ -80,7 +80,6 @@
 </template>
 
 <script>
-const countryFlags = import.meta.glob("/src/assets/images/countries/2023/*")
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import {Grid, Pagination} from 'swiper';
 import 'swiper/css/grid';
@@ -162,12 +161,6 @@ export default {
                 .replace(/-+/g, '-');
             return str;
         },
-        getCountryFlag(countryName) {
-            const countries = Object.keys(countryFlags);
-            const matchedCountry = countries.findIndex(element => element.includes(countryName))
-
-            return countries[matchedCountry];
-        },
         getMonthName(dateString) {
             const date = new Date(dateString);
             return date.toLocaleString('en-us', { month: 'short' });
@@ -191,6 +184,9 @@ export default {
         },
         toggleRoute() {
             this.$router.push({ path: '/calendar' })
+        },
+        getCountryFlag(name) {
+            return new URL(`/src/assets/images/countries/2023/${name}.svg`, import.meta.url).href
         },
     },
 };
