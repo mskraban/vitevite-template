@@ -16,51 +16,55 @@
             </div>
             <div class="row">
                 <div class="events">
-                    <swiper
-                        :centered-slides="true"
-                        :breakpoints="{
-                            0: {
-                                slidesPerView: 'auto',
-                                spaceBetween: 24,
-                                pagination: {
-                                    el: '.swiper-pagination-custom',
-                                    dynamicBullets: true,
+                    <div class="swiper-container">
+                        <swiper
+                            :modules="modules"
+                            :centered-slides="true"
+                            :breakpoints="{
+                                0: {
+                                    slidesPerView: 'auto',
+                                    spaceBetween: 24,
+                                    pagination: {
+                                        el: '.swiper-pagination-custom',
+                                        dynamicBullets: true,
+                                    },
                                 },
-                            },
-                            768: {
-                                slidesPerView: 4,
-                                centeredSlides: false,
-                                grid: {
-                                    rows: 2,
-                                },
-                                allowTouchMove: false,
+                                768: {
+                                    slidesPerView: 4,
+                                    centeredSlides: false,
+                                    grid: {
+                                        rows: 2,
+                                    },
+                                    allowTouchMove: false,
 
-                            },
-                        }"
-                    >
-                        <swiper-slide
-                            v-for="item in calendarData"
-                            v-show="isPastDate(item.Date)"
-                            :key="item.Circuit.circuitId"
+                                },
+                            }"
                         >
-                            <a
-                                :href="'calendar/' + slugify(item.Circuit.Location.Country)"
-                                class="event-card"
-                                @click="scrollToTop"
+                            <swiper-slide
+                                v-for="item in calendarData"
+                                v-show="isPastDate(item.Date)"
+                                :key="item.Circuit.circuitId"
                             >
-                                <div class="event-img">
-                                    <img :src="getCountryFlag(slugify(item.Circuit.Location.Country))" alt="Bahrain">
-                                </div>
-                                <div class="event-country">{{ item.Circuit.Location.Country }}</div>
-                                <div class="event-date">
-                                    <span class="event-weekend-date"></span>
-                                    <span class="event-month">
-                                        {{ getRaceDay(item.Date) }} {{ getMonthName(item.Date) }}
-                                    </span>
-                                </div>
-                            </a>
-                        </swiper-slide>
-                    </swiper>
+                                <a
+                                    :href="'calendar/' + slugify(item.Circuit.Location.Country)"
+                                    class="event-card"
+                                    @click="scrollToTop"
+                                >
+                                    <div class="event-img">
+                                        <img :src="getCountryFlag(slugify(item.Circuit.Location.Country))" alt="Bahrain">
+                                    </div>
+                                    <div class="event-country">{{ item.Circuit.Location.Country }}</div>
+                                    <div class="event-date">
+                                        <span class="event-weekend-date"></span>
+                                        <span class="event-month">
+                                            {{ getRaceDay(item.Date) }} {{ getMonthName(item.Date) }}
+                                        </span>
+                                    </div>
+                                </a>
+                            </swiper-slide>
+                        </swiper>
+                        <div class="swiper-pagination-custom"></div>
+                    </div>
                     <router-link
                         v-if="embedView"
                         class="btn btn-dark"
@@ -78,9 +82,10 @@
 <script>
 const countryFlags = import.meta.glob("/src/assets/images/countries/2023/*")
 import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Grid } from 'swiper';
+import {Grid, Pagination} from 'swiper';
 import 'swiper/css/grid';
 import 'swiper/css';
+import 'swiper/css/pagination';
 import axios from "axios";
 import parser from "xml2json-light";
 
@@ -98,7 +103,7 @@ export default {
     },
     setup() {
         return {
-            modules: [Grid],
+            modules: [Grid, Pagination],
         };
     },
     data() {

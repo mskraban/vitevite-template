@@ -817,7 +817,7 @@ body {
             padding-right: 2rem;
           }
 
-          h3 {
+          h1, h2, h3 {
             font-family: 'Bruno', sans-serif;
             font-style: normal;
             font-weight: 400;
@@ -981,7 +981,7 @@ body {
             padding-right: 2rem;
           }
 
-          h3 {
+          h1, h2, h3 {
             font-family: 'Bruno', sans-serif;
             font-style: normal;
             font-weight: 400;
@@ -992,6 +992,8 @@ body {
             text-align: left;
 
             @include media-breakpoint-down(md) {
+              font-size: 36px;
+              line-height: 150%;
               text-align: center;
             }
           }
@@ -1007,6 +1009,8 @@ body {
             text-align: left;
 
             @include media-breakpoint-down(md) {
+              font-size: 16px;
+              line-height: 150%;
               text-align: center;
             }
           }
@@ -1026,6 +1030,10 @@ body {
             transition: background-color 0.3s ease;
             justify-content: center;
             text-decoration: none;
+
+            @include media-breakpoint-down(md) {
+              width: 180px;
+            }
 
             &:hover {
               background: #b2b2b2;
@@ -1109,9 +1117,31 @@ body {
         }
       }
     }
-    .swiper-slide {
+
+    .swiper-container {
       @include media-breakpoint-down(md) {
-        width: 180px;
+        position: relative;
+        padding-bottom: 3rem;
+      }
+
+      .swiper-pagination-custom {
+        position: absolute;
+        bottom: 20px;
+
+        .swiper-pagination-bullet-active {
+          background: #F3F3F3 !important;
+        }
+
+        .swiper-pagination-bullet {
+          background: rgba(243, 243, 243, 0.4);
+          opacity: 1;
+        }
+      }
+
+      .swiper-slide {
+        @include media-breakpoint-down(md) {
+          width: 180px;
+        }
       }
     }
   }
