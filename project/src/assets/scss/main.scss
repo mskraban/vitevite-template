@@ -332,6 +332,7 @@ body {
           @include media-breakpoint-down(md) {
             font-size: 18px;
             line-height: 24px;
+            text-align: center;
           }
         }
 
@@ -402,6 +403,7 @@ body {
         order: 4;
         transition: all 0.2s ease-in-out;
         margin-top: 4rem;
+        text-decoration: none;
 
         span {
           transform: rotate(90deg);

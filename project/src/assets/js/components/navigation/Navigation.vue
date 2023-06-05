@@ -17,7 +17,6 @@
                 <router-link to="/teams" @click="openLink">Teams</router-link>
                 <router-link to="/tracks" @click="openLink">Tracks</router-link>
                 <router-link to="/calendar" @click="openLink">Calendar</router-link>
-                <router-link to="/drivers" @click="openLink">Drivers</router-link>
                 <router-link to="/events" @click="openLink">Events</router-link>
                 <router-link to="/news" @click="openLink">News</router-link>
             </div>
