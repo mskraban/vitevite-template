@@ -3,11 +3,11 @@
         :class="[expanded ? 'nav-expanded' : '', slimNavbar ? 'slim-navbar' : '']"
     >
         <div class="nav-container">
-            <div class="logo">
+            <router-link to="/" class="logo" @click="openLink">
                 <img
                     :src="images[1]"
                     alt="Next F1 Race" />
-            </div>
+            </router-link>
             <div
                 :class="expanded ? 'nav-expanded' : ''"
                 class="nav-links"

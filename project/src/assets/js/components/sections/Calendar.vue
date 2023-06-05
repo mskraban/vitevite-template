@@ -20,12 +20,13 @@
                         <swiper
                             :modules="modules"
                             :centered-slides="true"
+                            :pagination="true"
                             :breakpoints="{
                                 0: {
                                     slidesPerView: 'auto',
                                     spaceBetween: 24,
                                     pagination: {
-                                        el: '.swiper-pagination-custom',
+                                        el: embedView ? '.swiper-pagination-custom-inverse':'.swiper-pagination-custom',
                                         dynamicBullets: true,
                                     },
                                 },
@@ -36,7 +37,7 @@
                                         rows: 2,
                                     },
                                     allowTouchMove: false,
-
+                                    pagination: false,
                                 },
                             }"
                         >
@@ -66,7 +67,7 @@
                                 </a>
                             </swiper-slide>
                         </swiper>
-                        <div class="swiper-pagination-custom"></div>
+                        <div :class="embedView ? 'swiper-pagination-custom-inverse':'swiper-pagination-custom'"></div>
                     </div>
                     <router-link
                         v-if="embedView"

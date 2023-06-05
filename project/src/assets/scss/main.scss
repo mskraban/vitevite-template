@@ -600,8 +600,8 @@ body {
 
         @include media-breakpoint-down(md) {
           left: 50%;
-          font-size: 18px;
-          line-height: 200%;
+          font-size: 16px;
+          line-height: 230%;
         }
 
         a {
@@ -821,7 +821,7 @@ body {
           max-width: 600px;
 
           @include media-breakpoint-down(md) {
-            margin: 0 auto 60px;
+            margin: 0 auto 40px;
             padding-left: 2rem;
             padding-right: 2rem;
           }
@@ -886,7 +886,9 @@ body {
             text-decoration: none;
 
             @include media-breakpoint-down(md) {
+              height: 200px;
               width: 180px;
+              margin-bottom: 16px;
             }
 
             &:hover {
@@ -958,6 +960,12 @@ body {
                 text-align: center;
                 color: #1C1D23;
                 text-transform: uppercase;
+
+                @include media-breakpoint-down(md) {
+                  font-size: 12px;
+                  width: 52px;
+                  height: 22px;
+                }
               }
             }
           }
@@ -967,6 +975,10 @@ body {
           background: #1C1D23;
           color: #F3F3F3;
           margin-top: calc(40px - 18px);
+
+          @include media-breakpoint-down(md) {
+            margin-top: calc(40px - 1.5rem);
+          }
         }
       }
     }
@@ -985,7 +997,7 @@ body {
           max-width: 600px;
 
           @include media-breakpoint-down(md) {
-            margin: 0 auto 60px;
+            margin: 0 auto 40px;
             padding-left: 2rem;
             padding-right: 2rem;
           }
@@ -1153,6 +1165,20 @@ body {
         }
       }
 
+      .swiper-pagination-custom-inverse {
+        position: absolute;
+        bottom: 20px;
+
+        .swiper-pagination-bullet-active {
+          background: #1C1D23 !important;
+        }
+
+        .swiper-pagination-bullet {
+          background: rgba(28, 29, 35, 0.4);
+          opacity: 1;
+        }
+      }
+
       .swiper-slide {
         @include media-breakpoint-down(md) {
           width: 180px;
@@ -1178,7 +1204,7 @@ body {
           max-width: 600px;
 
           @include media-breakpoint-down(md) {
-            margin: 0 auto 60px;
+            margin: 0 auto 40px;
             padding-left: 2rem;
             padding-right: 2rem;
           }
@@ -1313,6 +1339,10 @@ body {
 
           .btn {
             margin-top: calc(60px - 1.5rem);
+
+            @include media-breakpoint-down(md) {
+              margin-top: calc(40px - 1.5rem);
+            }
           }
 
           .standings-card {
@@ -1359,6 +1389,10 @@ body {
               line-height: 27px;
               color: #1C1D23;
               margin-bottom: 10px;
+
+              @include media-breakpoint-down(lg) {
+                font-size: 18px;
+              }
             }
 
             .driver-pts {
@@ -1383,6 +1417,12 @@ body {
               border-style: solid;
               border-color: #FFFFFF;
               border-radius: 5px;
+
+              @include media-breakpoint-down(lg) {
+                width: 110px;
+                height: 42px;
+                font-size: 16px;
+              }
             }
           }
         }
@@ -1406,7 +1446,7 @@ body {
           max-width: 600px;
 
           @include media-breakpoint-down(md) {
-            margin: 0 auto 60px;
+            margin: 0 auto 40px;
             padding-left: 2rem;
             padding-right: 2rem;
           }
@@ -1562,6 +1602,10 @@ body {
 
           .btn {
             margin-top: calc(60px - 1.5rem);
+
+            @include media-breakpoint-down(md) {
+              margin-top: calc(40px - 1.5rem);
+            }
           }
 
           .standings-card {
@@ -1651,8 +1695,8 @@ body {
 
     &.embed {
       background: #1C1D23;
-      padding-top: 68px;
-      padding-bottom: 92px;
+      padding-top: 80px;
+      padding-bottom: 80px;
       overflow: visible;
 
       @include media-breakpoint-down(lg) {
@@ -1664,10 +1708,6 @@ body {
         .content {
           margin: 0 auto 40px;
           max-width: 100%;
-
-          @include media-breakpoint-down(md) {
-            margin: 0 auto 60px;
-          }
 
           h1, h2, h3 {
             font-family: 'Bruno', sans-serif;

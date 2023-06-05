@@ -20,8 +20,8 @@
                 <div v-if="$grid.lg && !embedView" class="wrapper">
                     <router-link
                         v-for="item in driversData"
-                        :key="item" 
-                        :to="'/driver/' + slugify(item.Driver.GivenName + '-' + item.Driver.FamilyName)" 
+                        :key="item"
+                        :to="'/driver/' + slugify(item.Driver.GivenName + '-' + item.Driver.FamilyName)"
                         class="standings-card tilt"
                     >
                         <div
@@ -55,7 +55,7 @@
                             0: {
                                 slidesPerView: 'auto',
                                 pagination: {
-                                    el: '.swiper-pagination-custom',
+                                    el: '.swiper-pagination-custom-mobile',
                                     dynamicBullets: true,
                                 },
                             },
@@ -102,7 +102,7 @@
                     </swiper>
                     <div class="swiper-next swiper-btn"></div>
                     <div class="swiper-prev swiper-btn"></div>
-                    <div class="swiper-pagination-custom"></div>
+                    <div class="swiper-pagination-custom swiper-pagination-custom-mobile"></div>
                 </div>
                 <router-link 
                     v-if="embedView" 

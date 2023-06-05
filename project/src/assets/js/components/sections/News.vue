@@ -45,8 +45,9 @@
                     <div class="col-12 col-lg-9">
                         <a :href="article.link" target="_blank">
                             <div class="news-title" v-html="replaceChars(article.title)"/>
-                            <div class="news-description"
-                                 v-html="truncateCopy(replaceChars(article.description), 180)"
+                            <div
+                                class="news-description"
+                                v-html="truncateCopy(replaceChars(article.description), 180)"
                             />
                         </a>
                     </div>
@@ -96,9 +97,7 @@ export default {
                 date.getFullYear();
 
             if (!version || version !== combinedDate) {
-                axios.get('https://www.formula1.com/content/fom-website/en/latest/all.xml', {
-                    crossdomain: true,
-                })
+                axios.get('https://www.formula1.com/content/fom-website/en/latest/all.xml')
                     
                     .then(response => {
                         // handle success
