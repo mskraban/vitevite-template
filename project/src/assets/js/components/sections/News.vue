@@ -44,9 +44,10 @@
                     </div>
                     <div class="col-12 col-lg-9">
                         <a :href="article.link" target="_blank">
-                            <div class="news-published" v-html="formatDate(article.pubDate)"/>
                             <div class="news-title" v-html="replaceChars(article.title)"/>
-                            <div class="news-description" v-html="replaceChars(article.description)"/>
+                            <div class="news-description"
+                                 v-html="truncateCopy(replaceChars(article.description), 180)"
+                            />
                         </a>
                     </div>
                 </article>
@@ -95,11 +96,8 @@ export default {
                 date.getFullYear();
 
             if (!version || version !== combinedDate) {
-                axios.get('https://www.crash.net/rss/f1', { 
+                axios.get('https://www.formula1.com/content/fom-website/en/latest/all.xml', {
                     crossdomain: true,
-                    headers: {
-                        'Access-Control-Allow-Origin': '*',
-                    },
                 })
                     
                     .then(response => {
@@ -156,6 +154,9 @@ export default {
             return selectedDate.toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric"}
             )
         },
+        truncateCopy(string, limit) {
+            return string.substring(0, limit) + '...';
+        }
     }
 };
 </script>
