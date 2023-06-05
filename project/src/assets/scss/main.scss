@@ -676,6 +676,11 @@ body {
       padding-top: 150px;
       padding-bottom: 120px;
 
+      @include media-breakpoint-down(md) {
+        padding-top: 80px;
+        padding-bottom: 60px;
+      }
+
       .container {
         max-width: 990px;
       }
@@ -987,6 +992,11 @@ body {
       padding-top: 150px;
       padding-bottom: 120px;
 
+      @include media-breakpoint-down(md) {
+        padding-top: 80px;
+        padding-bottom: 60px;
+      }
+
       .container {
         max-width: 990px;
       }
@@ -1053,7 +1063,9 @@ body {
             text-decoration: none;
 
             @include media-breakpoint-down(md) {
+              height: 200px;
               width: 180px;
+              margin-bottom: 16px;
             }
 
             &:hover {
@@ -1126,6 +1138,12 @@ body {
                 text-align: center;
                 color: #F3F3F3;
                 text-transform: uppercase;
+
+                @include media-breakpoint-down(md) {
+                  font-size: 12px;
+                  width: 52px;
+                  height: 22px;
+                }
               }
             }
           }
@@ -1439,6 +1457,11 @@ body {
       padding-top: 150px;
       padding-bottom: 120px;
       overflow: hidden;
+
+      @include media-breakpoint-down(md) {
+        padding-top: 80px;
+        padding-bottom: 60px;
+      }
 
       .row {
         .content {
@@ -1870,6 +1893,11 @@ body {
       padding-bottom: 120px;
       overflow: hidden;
 
+      @include media-breakpoint-down(md) {
+        padding-top: 80px;
+        padding-bottom: 60px;
+      }
+
       .content {
         margin: 0 auto 40px;
         max-width: 100%;
@@ -1878,10 +1906,6 @@ body {
           h1, h2, h3, p {
             text-align: center;
           }
-        }
-
-        @include media-breakpoint-down(md) {
-          margin: 0 auto 60px;
         }
 
         h1, h2, h3 {
