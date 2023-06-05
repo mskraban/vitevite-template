@@ -51,7 +51,10 @@
                                     @click="scrollToTop"
                                 >
                                     <div class="event-img">
-                                        <img :src="getCountryFlag(slugify(item.Circuit.Location.Country))" alt="Bahrain">
+                                        <img
+                                            :src="getCountryFlag(slugify(item.Circuit.Location.Country))"
+                                            alt="Bahrain"
+                                        >
                                     </div>
                                     <div class="event-country">{{ item.Circuit.Location.Country }}</div>
                                     <div class="event-date">

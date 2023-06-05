@@ -12,14 +12,14 @@
                 :class="expanded ? 'nav-expanded' : ''"
                 class="nav-links"
             >
-                <router-link to="/" @click="closeExpand">Home</router-link>
-                <router-link to="/standings" @click="closeExpand">Standings</router-link>
-                <router-link to="/teams" @click="closeExpand">Teams</router-link>
-                <router-link to="/tracks" @click="closeExpand">Tracks</router-link>
-                <router-link to="/calendar" @click="closeExpand">Calendar</router-link>
-                <router-link to="/drivers" @click="closeExpand">Drivers</router-link>
-                <router-link to="/events" @click="closeExpand">Events</router-link>
-                <router-link to="/news" @click="closeExpand">News</router-link>
+                <router-link to="/" @click="openLink">Home</router-link>
+                <router-link to="/standings" @click="openLink">Standings</router-link>
+                <router-link to="/teams" @click="openLink">Teams</router-link>
+                <router-link to="/tracks" @click="openLink">Tracks</router-link>
+                <router-link to="/calendar" @click="openLink">Calendar</router-link>
+                <router-link to="/drivers" @click="openLink">Drivers</router-link>
+                <router-link to="/events" @click="openLink">Events</router-link>
+                <router-link to="/news" @click="openLink">News</router-link>
             </div>
             <div
                 class="menu-icon d-inline-flex d-md-none"
@@ -71,11 +71,13 @@ export default {
     methods: {
         toggleExpand() {
             this.expanded = this.expanded === false;
+        },
+        openLink() {
+            this.closeExpand();
             this.scrollToTop();
         },
         closeExpand() {
             this.expanded = false;
-            this.scrollToTop();
         },
         scrollToTop() {
             window.scrollTo(0,0);

@@ -24,10 +24,14 @@ nav {
 
     &.nav-expanded {
       height: 100%;
-      position: absolute;
+      position: fixed;
       z-index: 5;
       top: 0;
       background: #1C1D23;
+
+      @include media-breakpoint-down(md) {
+        border-bottom: none !important;
+      }
 
       .logo {
         transform: scale(1.2);

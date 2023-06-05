@@ -95,7 +95,13 @@ export default {
                 date.getFullYear();
 
             if (!version || version !== combinedDate) {
-                axios.get('https://www.crash.net/rss/f1')
+                axios.get('https://www.crash.net/rss/f1', { 
+                    crossdomain: true,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                    },
+                })
+                    
                     .then(response => {
                         // handle success
                         data = response.data;
