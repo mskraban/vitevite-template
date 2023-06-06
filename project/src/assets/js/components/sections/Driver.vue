@@ -18,7 +18,7 @@
             >
                 <div v-if="$grid.lg && !embedView" class="wrapper">
                     <router-link 
-                        v-for="item in driversData" 
+                        v-for="item in driverData"
                         :key="item" 
                         :to="'/driver/' + item.Driver.driverId" 
                         class="standings-card tilt"
@@ -56,7 +56,7 @@
                     }"
                 >
                     <swiper-slide
-                        v-for="item in driversData" :key="item">
+                        v-for="item in driverData" :key="item">
                         <div class="standings-card">
                             <div
                                 class="driver-img team-gradient"
@@ -93,12 +93,9 @@
 
 
 <script>
-const driverImages = import.meta.glob("/src/assets/images/drivers/2023/*")
 import {Swiper, SwiperSlide} from 'swiper/vue';
 import axios from 'axios';
-import parser from 'xml2json-light'
 import 'swiper/css';
-import VanillaTilt from 'vanilla-tilt';
 
 export default {
     name: 'VueDriver',
@@ -115,21 +112,21 @@ export default {
     data() {
         return {
             expanded: false,
-            driversData: null,
+            driverData: null,
         };
     },
     mounted() {
-        this.getDriverStandings();
+        const name = window.location.pathname.split("/").pop();
+        this.getDriverStanding(this.slugToString(name));
 
         setTimeout(() => {
             this.addTilt();
         }, 1000);
-
     },
     methods: {
-        getDriverStandings() {
-            let data = localStorage.getItem('driverStandings')
-            const version = localStorage.getItem('driverStandingsVersion')
+        getDriverStanding(name) {
+            let data = localStorage.getItem('driver' + name)
+            const version = localStorage.getItem('driverVersion' + name)
 
             const date = new Date();
             const combinedDate =
@@ -137,52 +134,36 @@ export default {
                 date.getDay() + '/' +
                 date.getMonth() + '/' +
                 date.getFullYear();
-            // trigger endpoint after first page load, set version
-            // save date instead of version
-            // refresh content every day - if there is 1 day diff
 
             if (!version || version !== combinedDate) {
-                axios.get('https://ergast.com/api/f1/current/driverStandings')
+                axios.get('https://v1.formula-1.api-sports.io/drivers?search=' + name, {
+                    headers: {
+                        "x-rapidapi-host": 'v1.formula-1.api-sports.io',
+                        "x-rapidapi-key": '22d70395d894e3afd88a76045ff574b1'
+                    }
+                })
                     .then(response => {
                         // handle success
                         data = response.data;
-                        localStorage.setItem('driverStandings', data)
-                        localStorage.setItem('driverStandingsVersion', combinedDate)
-                        this.driversData = this.parseXml(data);
-                        this.driversData = this.driversData.MRData.StandingsTable.StandingsList.DriverStanding;
+                        localStorage.setItem('driver' + name, data)
+                        localStorage.setItem('driverVersion' + name, combinedDate)
+                        this.driversData = data;
                     })
                     .catch(error => {
                         // handle error
                         console.log(error);
                     });
             } else {
-                this.driversData = this.parseXml(data);
-                this.driversData = this.driversData.MRData.StandingsTable.StandingsList.DriverStanding;
+                this.driversData = data;
             }
           
-        },
-        parseXml(xmlData) {
-            return parser.xml2json(xmlData);
-        },
-        getDriverImage(driverName) {
-            const drivers = Object.keys(driverImages);
-            const matchedDriver = drivers.findIndex(element => element.includes(driverName))
-
-            return drivers[matchedDriver];
         },
         scrollToTop() {
             window.scrollTo(0,0);
         },
-        addTilt() {
-            if (this.$grid.lg) {
-                VanillaTilt.init(document.querySelectorAll(".tilt"), {
-                    max: 15,
-                    speed: 400,
-                    axis: 'x',
-                    scale: 1.2,
-                });
-            }
-        }
+        slugToString(slug) {
+            return slug.split("-").slice(-1)[0];
+        },
     }
 };
 </script>
