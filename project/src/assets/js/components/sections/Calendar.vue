@@ -10,7 +10,9 @@
                         Calendar
                     </component>
            
-                    <p>The F1 calendar is a schedule of all the races that take place in the 
+                    <p v-if="embedView">The F1 calendar is a schedule of all future races that take place in the
+                        Formula One World Championship season.</p>
+                    <p v-else>The F1 calendar is a schedule of all the races that take place in the
                         Formula One World Championship season.</p>
                 </div>
             </div>
@@ -49,12 +51,13 @@
                                 <a
                                     :href="'calendar/' + slugify(item.Circuit.Location.Country)"
                                     class="event-card"
+                                    :class="isFuture(item.Date) && !embedView ? 'past-event' : ''"
                                     @click="scrollToTop"
                                 >
                                     <div class="event-img">
                                         <img
                                             :src="getCountryFlag(slugify(item.Circuit.Location.Country))"
-                                            alt="Bahrain"
+                                            :alt="item.Circuit.Location.Country"
                                         >
                                     </div>
                                     <div class="event-country">{{ item.Circuit.Location.Country }}</div>
@@ -182,6 +185,12 @@ export default {
             } else {
                 return true;
             }
+        },
+        isFuture(dateString) {
+            const selectedDate = new Date(dateString);
+            const now = new Date();
+
+            return selectedDate < now;
         },
         scrollToTop() {
             window.scrollTo(0,0);
