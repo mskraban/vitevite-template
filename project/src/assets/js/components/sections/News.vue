@@ -47,7 +47,7 @@
                             <div class="news-title" v-html="replaceChars(article.title)"/>
                             <div
                                 class="news-description"
-                                v-html="truncateCopy(replaceChars(article.description), 180)"
+                                v-html="truncateCopy(replaceChars(article.description), $grid.lg ? 180 : 80)"
                             />
                         </a>
                     </div>

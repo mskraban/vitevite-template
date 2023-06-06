@@ -50,7 +50,7 @@ export default {
     },
     watch: {
         windowTop () {
-            if (this.windowTop > 200) {
+            if (this.windowTop > 100) {
                 if (!this.slimNavbar) {
                     this.slimNavbar = true;
                 }
