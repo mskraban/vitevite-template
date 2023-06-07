@@ -1,114 +1,102 @@
 <template>
-    <div
-        id="standings"
-        :class="embedView ? 'embed' : 'page-view'"
-    >
-
-        <div class="row">
-            <slot name="embedContent" />
-            <div v-if="!embedView" class="content">
-                <h1>Driver</h1>
-                <p>Driver info</p>
-            </div>
-        </div>
-        <div class="row">
-            <div
-                class="standings"
-                :class="embedView ? 'flex-layout' : 'grid-layout'"
-            >
-                <div v-if="$grid.lg && !embedView" class="wrapper">
-                    <router-link 
-                        v-for="item in driverData"
-                        :key="item" 
-                        :to="'/driver/' + item.Driver.driverId" 
-                        class="standings-card tilt"
-                    >
-                        <div
-                            class="driver-img team-gradient"
-                            :class="item.Constructor.constructorId"
-                        >
-                            <img
-                                :src="getDriverImage(item.Driver.driverId)"
-                                :alt="item.Driver.GivenName + ' ' + item.Driver.FamilyName"
-                                loading="lazy"
-                            >
+    <div id="driver">
+        <div class="container">
+            <div v-if="driverData" class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="driver-card">
+                        <div class="driver-img">
+                            <img src="#" :alt="driverData.name">
                         </div>
                         <div class="driver-name">
-                            {{ item.Driver.GivenName }}
-                            {{ item.Driver.FamilyName }}
+                            <div class="driver-first-name">
+                                <img src="#" :alt="driverData.country.name">
+                                <span class="name">{{ driverData.country.name }}</span>
+                            </div>
                         </div>
-                        <div class="driver-pts">
-                            <span class="pts-count">{{ item.points }}</span>
-                            <span class="pts-copy">pts</span>
-                        </div>
-                    </router-link>
+                    </div>
                 </div>
-                <swiper
-                    v-else
-                    slides-per-view="auto"
-                    :centered-slides="true"
-                    :space-between="24"
-                    :breakpoints="{
-                        768: {
-                            slidesPerView: 3,
-                            centeredSlides: false,
-                        },
-                    }"
-                >
-                    <swiper-slide
-                        v-for="item in driverData" :key="item">
-                        <div class="standings-card">
-                            <div
-                                class="driver-img team-gradient"
-                                :class="item.Constructor.constructorId"
-                            >
-                                <img
-                                    :src="getDriverImage(item.Driver.driverId)"
-                                    :alt="item.Driver.GivenName + ' ' + item.Driver.FamilyName">
-                            </div>
-                            <div class="driver-name">
-                                {{ item.Driver.GivenName }}
-                                {{ item.Driver.FamilyName }}
-                            </div>
-                            <div class="driver-pts">
-                                <span class="pts-count">{{ item.points }}</span>
-                                <span class="pts-copy">pts</span>
+                <div class="col-12 col-lg-6">
+                    <div class="driver-info-grid">
+                        <div class="driver-info">
+                            <div class="driver-info-row">
+                                <div class="info-title">Country</div>
+                                <div class="info-data">{{ driverData.country.name }}</div>
                             </div>
                         </div>
-                    </swiper-slide>
-                </swiper>
-
-                <router-link 
-                    v-if="embedView" 
-                    to="/standings" 
-                    class="btn btn-white"
-                    @click="scrollToTop"
-                >
-                    Full standings
-                </router-link>
+                        <div class="driver-info">
+                            <div class="driver-info-row">
+                                <div class="info-title">Birthdate</div>
+                                <div class="info-data">{{ driverData.birthdate }}</div>
+                            </div>
+                        </div>
+                        <div class="driver-info">
+                            <div class="driver-info-row">
+                                <div class="info-title">Age</div>
+                                <div class="info-data">{{ getAge(driverData.birthdate) }}</div>
+                            </div>
+                        </div>
+                        <div class="driver-info">
+                            <div class="driver-info-row">
+                                <div class="info-title">Birthplace</div>
+                                <div class="info-data">{{ driverData.birthplace }}</div>
+                            </div>
+                        </div>
+                        <div class="driver-info">
+                            <div class="driver-info-row">
+                                <div class="info-title">Driver number</div>
+                                <div class="info-data">{{ driverData.number }}</div>
+                            </div>
+                        </div>
+                        <div class="driver-info">
+                            <div class="driver-info-row">
+                                <div class="info-title">Grand prixs entered</div>
+                                <div class="info-data">{{ driverData.grands_prix_entered }}</div>
+                            </div>
+                        </div>
+                        <div class="driver-info">
+                            <div class="driver-info-row">
+                                <div class="info-title">World Championships</div>
+                                <div class="info-data">{{ driverData.world_championships }}</div>
+                            </div>
+                        </div>
+                        <div class="driver-info">
+                            <div class="driver-info-row">
+                                <div class="info-title">Podiums</div>
+                                <div class="info-data">{{ driverData.podiums }}</div>
+                            </div>
+                        </div>
+                        <div class="driver-info">
+                            <div class="driver-info-row">
+                                <div class="info-title">Highest race finish</div>
+                                <div class="info-data">{{ driverData.highest_race_finish.position }}</div>
+                            </div>
+                        </div>
+                        <div class="driver-info">
+                            <div class="driver-info-row">
+                                <div class="info-title">Highest race start position</div>
+                                <div class="info-data">{{ driverData.highest_grid_position }}</div>
+                            </div>
+                        </div><div class="driver-info">
+                            <div class="driver-info-row">
+                                <div class="info-title">Career points</div>
+                                <div class="info-data">{{ driverData.career_points }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div v-else class="loader"></div>
         </div>
     </div>
 </template>
 
 
 <script>
-import {Swiper, SwiperSlide} from 'swiper/vue';
 import axios from 'axios';
 import 'swiper/css';
 
 export default {
     name: 'VueDriver',
-    components: {
-        Swiper,
-        SwiperSlide,
-    },
-    props: {
-        embedView: {
-            type: Boolean,
-            default: false,
-        }
-    },
     data() {
         return {
             expanded: false,
@@ -147,14 +135,16 @@ export default {
                         data = response.data;
                         localStorage.setItem('driver' + name, data)
                         localStorage.setItem('driverVersion' + name, combinedDate)
-                        this.driversData = data;
+                        this.driverData = data.response[0];
+                        console.table(this.driverData);
                     })
                     .catch(error => {
                         // handle error
                         console.log(error);
                     });
             } else {
-                this.driversData = data;
+                this.driverData = data.response[0];
+                console.table(this.driverData);
             }
           
         },
@@ -164,6 +154,19 @@ export default {
         slugToString(slug) {
             return slug.split("-").slice(-1)[0];
         },
+        getAge(dateString) {
+            const today = new Date();
+            const birthDate = new Date(dateString);
+
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+            
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            return age;
+        }
     }
 };
 </script>

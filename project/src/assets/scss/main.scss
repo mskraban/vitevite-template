@@ -2152,4 +2152,45 @@ body {
       }
     }
   }
+
+  #driver {
+    background: #1C1D23;
+    padding-top: 150px;
+    padding-bottom: 120px;
+
+    @include media-breakpoint-down(md) {
+      padding-top: 80px;
+      padding-bottom: 60px;
+    }
+
+    .container {
+      max-width: 990px;
+    }
+
+    .driver-info-grid {
+      .driver-info-row {
+        display: flex;
+        justify-content: space-between;
+
+        .info-title {
+          font-family: 'Exo', sans-serif;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 150%;
+          color: #F3F3F3;
+        }
+
+        .info-data {
+          font-family: 'Exo', sans-serif;
+          font-style: normal;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 150%;
+          text-align: right;
+          color: #F3F3F3;
+        }
+      }
+    }
+  }
 }
