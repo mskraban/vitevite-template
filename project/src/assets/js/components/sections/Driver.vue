@@ -3,9 +3,15 @@
         <div class="container">
             <div v-if="driverData" class="row">
                 <div class="col-12 col-lg-6">
-                    <div class="driver-card">
+                    <div
+                        class="driver-card team-gradient"
+                        :class="constructorId">
                         <div class="driver-img">
-                            <img src="#" :alt="driverData.name">
+                            <img
+                                :src="getDriverImage(driverId)"
+                                :alt="driverData.name"
+                                loading="lazy"
+                            >
                         </div>
                         <div class="driver-name">
                             <div class="driver-first-name">
@@ -94,6 +100,7 @@
 <script>
 import axios from 'axios';
 import 'swiper/css';
+import parser from "xml2json-light";
 
 export default {
     name: 'VueDriver',
@@ -101,9 +108,18 @@ export default {
         return {
             expanded: false,
             driverData: null,
+            driverId: null,
+            driversData: null,
+            constructorId: null,
         };
     },
+    watch: {
+        driverData: function() {
+            this.getDriverId();
+        }
+    },
     mounted() {
+        this.getDriverStandings();
         const name = window.location.pathname.split("/").pop();
         this.getDriverStanding(this.slugToString(name));
     },
@@ -160,7 +176,61 @@ export default {
             }
 
             return age;
-        }
+        },
+        getDriverStandings() {
+            let data = localStorage.getItem('driverStandings')
+            const version = localStorage.getItem('driverStandingsVersion')
+
+            const date = new Date();
+            const combinedDate =
+                date.getHours() + '/' +
+                date.getDay() + '/' +
+                date.getMonth() + '/' +
+                date.getFullYear();
+            // trigger endpoint after first page load, set version
+            // save date instead of version
+            // refresh content every day - if there is 1 day diff
+
+            if (!version || version !== combinedDate) {
+                axios.get('https://ergast.com/api/f1/current/driverStandings')
+                    .then(response => {
+                        // handle success
+                        data = response.data;
+                        localStorage.setItem('driverStandings', data)
+                        localStorage.setItem('driverStandingsVersion', combinedDate)
+                        this.driversData = this.parseXml(data);
+                        this.driversData = this.driversData.MRData.StandingsTable.StandingsList.DriverStanding;
+                    })
+                    .catch(error => {
+                        // handle error
+                        console.log(error);
+                    });
+            } else {
+                this.driversData = this.parseXml(data);
+                this.driversData = this.driversData.MRData.StandingsTable.StandingsList.DriverStanding;
+            }
+
+        },
+        parseXml(xmlData) {
+            return parser.xml2json(xmlData);
+        },
+        getDriverId() {
+            let driverId = null;
+            let constructorId = null;
+            
+            this.driversData.forEach((driver) => {
+                if (this.driverData.abbr === driver.Driver.code) {
+                    driverId = driver.Driver.driverId;
+                    constructorId = driver.Constructor.constructorId;
+                }
+            });
+            
+            this.driverId = driverId;
+            this.constructorId = constructorId;
+        },
+        getDriverImage(name) {
+            return new URL(`/src/assets/images/drivers/2023/${name}.webp`, import.meta.url).href
+        },
     }
 };
 </script>
