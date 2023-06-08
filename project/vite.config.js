@@ -5,12 +5,10 @@ import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfil
 
 export default defineConfig({
     // ...other config settings
-    base: './',
     plugins: [
         vue({ customElement: true }),
         eslintPlugin(),
     ],
-    publicPath: '',
     optimizeDeps: {
         esbuildOptions: {
             // Node.js global to browser globalThis

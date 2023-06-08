@@ -106,10 +106,6 @@ export default {
     mounted() {
         const name = window.location.pathname.split("/").pop();
         this.getDriverStanding(this.slugToString(name));
-
-        setTimeout(() => {
-            this.addTilt();
-        }, 1000);
     },
     methods: {
         getDriverStanding(name) {
@@ -132,19 +128,17 @@ export default {
                 })
                     .then(response => {
                         // handle success
-                        data = response.data;
-                        localStorage.setItem('driver' + name, data)
+                        data = response.data.response[0];
+                        localStorage.setItem('driver' + name, JSON.stringify(data))
                         localStorage.setItem('driverVersion' + name, combinedDate)
-                        this.driverData = data.response[0];
-                        console.table(this.driverData);
+                        this.driverData = data;
                     })
                     .catch(error => {
                         // handle error
                         console.log(error);
                     });
             } else {
-                this.driverData = data.response[0];
-                console.table(this.driverData);
+                this.driverData = JSON.parse(data);
             }
           
         },
