@@ -4,9 +4,11 @@
             <div v-if="driverData" class="row">
                 <div class="col-12 col-lg-6">
                     <div
-                        class="driver-card team-gradient"
-                        :class="constructorId">
-                        <div class="driver-img">
+                        class="driver-card">
+                        <div
+                            class="driver-img team-gradient"
+                            :class="constructorId"
+                        >
                             <img
                                 :src="getDriverImage(driverId)"
                                 :alt="driverData.name"
@@ -15,8 +17,15 @@
                         </div>
                         <div class="driver-name">
                             <div class="driver-first-name">
-                                <img src="#" :alt="driverData.country.name">
-                                <span class="name">{{ driverData.country.name }}</span>
+                                  <img
+                                      :src="getCountryFlag(slugify(driverData.country.name))"
+                                      class="country-flag"
+                                      :alt="driverData.country.name"
+                                  >
+                                <span class="name">{{ firstName }}</span>
+                            </div>
+                            <div class="driver-last-name">
+                                {{ lastName }}
                             </div>
                         </div>
                     </div>
@@ -111,6 +120,8 @@ export default {
             driverId: null,
             driversData: null,
             constructorId: null,
+            firstName: null,
+            lastName: null,
         };
     },
     watch: {
@@ -217,19 +228,40 @@ export default {
         getDriverId() {
             let driverId = null;
             let constructorId = null;
+            let firstName = null;
+            let lastName = null;
             
             this.driversData.forEach((driver) => {
-                if (this.driverData.abbr === driver.Driver.code) {
+                if (driver.Driver.PermanentNumber == 33) {
+                    driver.Driver.PermanentNumber = 1;
+                }
+
+                if (this.driverData.number == driver.Driver.PermanentNumber) {
                     driverId = driver.Driver.driverId;
                     constructorId = driver.Constructor.constructorId;
+                    firstName = driver.Driver.GivenName;
+                    lastName = driver.Driver.FamilyName;
                 }
             });
             
             this.driverId = driverId;
             this.constructorId = constructorId;
+            this.firstName = firstName;
+            this.lastName = lastName;
+        },
+        slugify(str) {
+            str = str.replace(/^\s+|\s+$/g, '');
+            str = str.toLowerCase();
+            str = str.replace(/[^a-z0-9 -]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-');
+            return str;
         },
         getDriverImage(name) {
             return new URL(`/src/assets/images/drivers/2023/${name}.webp`, import.meta.url).href
+        },
+        getCountryFlag(name) {
+            return new URL(`/src/assets/images/countries/2023/${name}.svg`, import.meta.url).href
         },
     }
 };
