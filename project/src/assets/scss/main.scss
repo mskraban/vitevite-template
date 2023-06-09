@@ -2230,6 +2230,12 @@ body {
     }
 
     .driver-info-grid {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.5rem;
+
       .driver-info-row {
         display: flex;
         justify-content: space-between;

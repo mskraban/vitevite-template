@@ -17,11 +17,11 @@
                         </div>
                         <div class="driver-name">
                             <div class="driver-first-name">
-                                  <img
-                                      :src="getCountryFlag(slugify(driverData.country.name))"
-                                      class="country-flag"
-                                      :alt="driverData.country.name"
-                                  >
+                                <img
+                                    :src="getCountryFlag(slugify(driverData.country.code))"
+                                    class="country-flag"
+                                    :alt="driverData.country.name"
+                                >
                                 <span class="name">{{ firstName }}</span>
                             </div>
                             <div class="driver-last-name">
@@ -261,7 +261,7 @@ export default {
             return new URL(`/src/assets/images/drivers/2023/${name}.webp`, import.meta.url).href
         },
         getCountryFlag(name) {
-            return new URL(`/src/assets/images/countries/2023/${name}.svg`, import.meta.url).href
+            return new URL(`/src/assets/images/countries/flags/${name}.svg`, import.meta.url).href
         },
     }
 };
