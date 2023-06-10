@@ -1,7 +1,7 @@
 <template>
     <div id="driver">
-        <div class="container">
-            <div v-if="driverData" class="row">
+        <div v-if="driverData" class="container">
+            <div class="row">
                 <div class="col-12 col-lg-6">
                     <div
                         class="driver-card">
@@ -100,11 +100,9 @@
                     </div>
                 </div>
             </div>
-            <div v-else class="loader"></div>
         </div>
     </div>
 </template>
-
 
 <script>
 import axios from 'axios';

@@ -145,6 +145,11 @@ export default {
             activeTeamName: null,
         };
     },
+    watch: {
+        constructorsData: function() {
+            this.activeTeam = this.constructorsData[0].Constructor.constructorId;
+        }
+    },
     beforeMount() {
         this.getConstuctorStandings();
         this.getDriverStandings();
