@@ -7,6 +7,7 @@ import App from './components/App.vue'
 // Vue utility Components
 import Navigation from './components/navigation/Navigation.vue'
 import Footer from './components/navigation/Footer.vue'
+import Loader from './components/utils/loader.vue'
 
 // Vue section Components
 import Standings from './components/sections/Standings.vue'
@@ -14,6 +15,7 @@ import Calendar from './components/sections/Calendar.vue'
 import Teams from './components/sections/Teams.vue'
 import News from './components/sections/News.vue'
 import Driver from './components/sections/Driver.vue'
+import Team from './components/sections/Team.vue'
 
 // Vue pages
 import Home from './views/HomePage.vue'
@@ -49,6 +51,11 @@ const routes = [
         name: 'Driver',
         component: Driver
     },
+    {
+        path: '/team/:slug',
+        name: 'Team',
+        component: Team
+    },
 ]
 
 const router = createRouter({
@@ -67,6 +74,7 @@ createApp(App)
     .use(VueScreen, 'bootstrap')
     .component('VueNavigation', Navigation)
     .component('VueFooter', Footer)
+    .component('VueLoader', Loader)
     .component('VueStandings', Standings)
     .component('VueCalendar', Calendar)
     .component('VueTeams', Teams)

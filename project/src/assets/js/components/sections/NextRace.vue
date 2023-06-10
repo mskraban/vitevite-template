@@ -1,92 +1,100 @@
 <template>
     <div>
-        <section id="hero">
-            <transition
-                name="fade"
-                mode="out-in"
-            >
-                <picture :key="backgroundImage">
-                    <source
-                        :srcset="getImageUrl(backgroundImage)"
-                        type="image/jpeg"
+        <transition name="fade">
+            <div v-if="backgroundImage">
+                <section id="hero">
+                    <transition
+                        name="fade"
+                        mode="out-in"
                     >
-                    <img 
-                        :src="getImageUrl(backgroundImage)"
-                        alt="Monaco" 
-                        rel="preload"
+                        <picture :key="backgroundImage">
+                            <source
+                                :srcset="getImageUrl(backgroundImage)"
+                                type="image/jpeg"
+                            >
+                            <img
+                                :src="getImageUrl(backgroundImage)"
+                                alt="Monaco"
+                                rel="preload"
+                            >
+                        </picture>
+                    </transition>
+
+                    <div
+                        class="content"
+                        :class="activeRace[0] ? 're-order' : ''"
                     >
-                </picture>
-            </transition>
-          
-            <div
-                class="content"
-                :class="activeRace[0] ? 're-order' : ''"
-            >
-                <h1 v-if="activeRace[0]">{{ activeRace[0].RaceName }}</h1>
-                <h1 v-else>Next F1 race in:</h1>
+                        <h1 v-if="activeRace[0]">{{ activeRace[0].RaceName }}</h1>
+                        <h1 v-else>Next F1 race in:</h1>
 
-                <vue-countdown v-if="activeRace[0]" v-slot="{ hours, minutes, seconds }" :time="getNextRaceEventTime()">
-                    <p>{{ hours }} hours {{ minutes }}min {{ seconds }}s</p>
-                </vue-countdown>
-                <vue-countdown v-else v-slot="{ days, hours, minutes, seconds }" :time="getNextRaceDate()">
-                    <p>{{ days }} days {{ hours }} hours {{ minutes }}min {{ seconds }}s</p>
-                </vue-countdown>
+                        <vue-countdown v-if="activeRace[0]" v-slot="{ hours, minutes, seconds }" :time="getNextRaceEventTime()">
+                            <p>{{ hours }} hours {{ minutes }}min {{ seconds }}s</p>
+                        </vue-countdown>
+                        <vue-countdown v-else v-slot="{ days, hours, minutes, seconds }" :time="getNextRaceDate()">
+                            <p>{{ days }} days {{ hours }} hours {{ minutes }}min {{ seconds }}s</p>
+                        </vue-countdown>
 
-                <div v-if="activeRaceNextEvents[0]" class="country-title"> {{ activeRaceNextEvents[0][0] }} </div>
-                <div v-else class="country-title">{{ getNextRaceCountry() }}</div>
+                        <div v-if="activeRaceNextEvents[0]" class="country-title"> {{ activeRaceNextEvents[0][0] }} </div>
+                        <div v-else class="country-title">{{ getNextRaceCountry() }}</div>
 
-                <a href="#upcoming" class="btn btn-red">Upcoming events</a>
-                <a href="#upcoming" class="chevron-down float">
-                    <span/>
-                </a>
-            </div>
-        </section>
-        <section id="upcoming">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="content">
-                            <h2>Upcoming</h2>
-                            <div
-                                v-if="activeRace[0]"
-                                class="next">
-                                <div
-                                    v-for="race in activeRaceNextEvents"
-                                    :key="race[0]"
-                                    class="race"
-                                >
-                                    <div class="info">
-                                        <div class="grand-prix">{{ race[0] }}</div>
+                        <a href="#upcoming" class="btn btn-red">Upcoming events</a>
+                        <a href="#upcoming" class="chevron-down float">
+                            <span/>
+                        </a>
+                    </div>
+                </section>
+                <section id="upcoming">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="content">
+                                    <h2>Upcoming</h2>
+                                    <div
+                                        v-if="activeRace[0]"
+                                        class="next">
+                                        <div
+                                            v-for="race in activeRaceNextEvents"
+                                            :key="race[0]"
+                                            class="race"
+                                        >
+                                            <div class="info">
+                                                <div class="grand-prix">{{ race[0] }}</div>
+                                            </div>
+                                            <div class="date">
+                                                {{ getDayTime(race[1]) }}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="date">
-                                        {{ getDayTime(race[1]) }}
+                                    <div
+                                        v-else
+                                        class="next">
+                                        <a
+                                            v-for="race in nextRaces.slice(0, 3)"
+                                            :key="race.Circuit.circuitId"
+                                            class="race"
+                                            :href="'calendar/' + slugify(race.Circuit.Location.Country)"
+                                        >
+                                            <div class="info">
+                                                <div class="upper-title">Next race</div>
+                                                <div class="grand-prix">{{ race.RaceName }}</div>
+                                                <div class="circuit">{{ race.Circuit.CircuitName }}</div>
+                                            </div>
+                                            <div class="date">
+                                                {{ getMonthDay(race.Date) }}
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                v-else
-                                class="next">
-                                <a
-                                    v-for="race in nextRaces.slice(0, 3)"
-                                    :key="race.Circuit.circuitId"
-                                    class="race"
-                                    :href="'calendar/' + slugify(race.Circuit.Location.Country)"
-                                >
-                                    <div class="info">
-                                        <div class="upper-title">Next race</div>
-                                        <div class="grand-prix">{{ race.RaceName }}</div>
-                                        <div class="circuit">{{ race.Circuit.CircuitName }}</div>
-                                    </div>
-                                    <div class="date">
-                                        {{ getMonthDay(race.Date) }}
-                                    </div>
-                                </a>
-                            </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-        </section>
+        </transition>
+        <transition name="fade">
+            <vue-loader v-if="!backgroundImage"/>
+        </transition>
+
     </div>
 </template>
 
@@ -94,10 +102,11 @@
 import axios from "axios";
 import parser from "xml2json-light";
 import VueCountdown from '@chenfengyuan/vue-countdown';
+import VueLoader from "../utils/Loader.vue";
 
 export default {
     name: 'NextRace',
-    components: {VueCountdown},
+    components: {VueLoader, VueCountdown},
     props: {
         embedView: {
             type: Boolean,
@@ -116,7 +125,7 @@ export default {
             nextRace: [],
             activeRace: [],
             activeRaceNextEvents: [],
-            backgroundImage: 'default',
+            backgroundImage: null,
         };
     },
     watch: {
